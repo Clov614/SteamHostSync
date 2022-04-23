@@ -26,11 +26,11 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email "zhenghongyi1225@foxmail.com"
+          git config --local user.email zhenghongyi1225@foxmail.com
           git config --global user.name action_bot
           git add .
           git commit -m "Auto commit"
-          continue-on-error: true
+        continue-on-error: true
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
