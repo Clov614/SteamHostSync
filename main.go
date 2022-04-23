@@ -49,7 +49,7 @@ func main() {
 	fileIO.WriteFile(content, "README.md")
 	HTML := fileIO.ReadHtml()
 	HTML = strings.Replace(HTML, "#TARGET#", result, 1)
-	fileIO.WriteFile(HTML, "index.html")
+	fileIO.WriteFile(HTML, "hosts")
 }
 
 func getip(url string) string {
