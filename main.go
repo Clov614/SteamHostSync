@@ -20,6 +20,7 @@ func init() {
 var result string
 var resultTmp string
 var Tempplat string
+var cstSh, _ = time.LoadLocation("Asia/Shanghai")
 
 func main() {
 	for i := 0; i < L; i++ {
@@ -35,9 +36,9 @@ func main() {
 			fmt.Printf("%s\t\t\t%s\n", ip, v)
 		}
 		resultTmp += fmt.Sprintf("#%s End\n", Tempplat)
-		resultTmp += fmt.Sprintf("# Last Update Time : %s \n\n", time.Now().Format("2006-01-02 15:04:05"))
+		resultTmp += fmt.Sprintf("# Last Update Time : %s \n\n", time.Now().In(cstSh).Format("2006-01-02 15:04:05"))
 		fmt.Printf("####################%s End####################\n", Tempplat)
-		fmt.Printf("# Last Update Time :  %s \n\n", time.Now().Format("2006-01-02 15:04:05"))
+		fmt.Printf("# Last Update Time :  %s \n\n", time.Now().In(cstSh).Format("2006-01-02 15:04:05"))
 		fileIO.WriteHost(resultTmp, "Hosts"+"_"+Tempplat)
 		result += resultTmp
 		resultTmp = ""
@@ -49,7 +50,7 @@ func main() {
 	fileIO.WriteFile(content, "README.md")
 	HTML := fileIO.ReadHtml()
 	HTML = strings.Replace(HTML, "#TARGET#", result, 1)
-	fileIO.WriteFile(HTML, "hosts")
+	fileIO.WriteFile(HTML, "hosts.html")
 }
 
 func getip(url string) string {

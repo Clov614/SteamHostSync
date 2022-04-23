@@ -6,7 +6,7 @@ import (
 )
 
 func ReadHtml() string {
-	file, err := os.Open("./index.html")
+	file, err := os.Open("./hosts.html")
 	if err != nil {
 		panic(err)
 	}
