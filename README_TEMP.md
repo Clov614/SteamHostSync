@@ -7,7 +7,8 @@
 
 ## 2. 使用方法
 ## 自动方法(使用工具)
-推荐使用Hosts管理工具[SwitchHosts](https://github.com/oldj/SwitchHosts)
+推荐使用Hosts管理工具[SwitchHosts](https://github.com/oldj/SwitchHosts) 
+[SwitchHosts备用下载源](https://nas.iaimi.info/s/nT5pb8jMQp32QwB)
 ### 开机自启动SwitchHosts
 win + R 后执行 `shell:startup`    
 ![](/img/1.png)  
