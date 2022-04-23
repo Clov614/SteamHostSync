@@ -1,5 +1,5 @@
 # SteamHostSync
-第一次用go写的项目，写的烂欢迎大佬指出
+第一次用go写的项目，写的比较烂，欢迎大佬指出错误。
 
 ## 1. 实现
 对Hosts进行一个新的更  
@@ -18,7 +18,7 @@ win + R 后执行 `shell:startup`
 #### 1. hosts 文件在每个系统的位置不一，详情如下:
 - Windows 系统：`C:\Windows\System32\drivers\etc\hosts`
 - Linux 系统：`/etc/hosts`
-- Mac（苹果电脑）系统：/etc/hosts
+- Mac（苹果电脑）系统：`/etc/hosts`
 
 #### 2. 修改方法
 复制下面的内容至hosts尾部(追加在文本末尾)
