@@ -43,7 +43,7 @@ func main() {
 		result += resultTmp
 		resultTmp = ""
 	}
-	result += "Github: https://github.com/Clov614/SteamHostSync\n"
+	result += "#Github: https://github.com/Clov614/SteamHostSync\n"
 	fileIO.WriteHost(result, "Hosts")
 	content := fileIO.Read_tmp()
 	content = strings.Replace(content, "HOST_TARGET", result, 1)
