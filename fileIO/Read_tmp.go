@@ -6,8 +6,7 @@ import (
 )
 
 func Read_tmp() string {
-	pwd, _ := os.Getwd()
-	file, err := os.Open(pwd + "\\README_TEMP.md")
+	file, err := os.Open("./README_TEMP.md")
 	if err != nil {
 		panic(err)
 	}
