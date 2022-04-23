@@ -12,8 +12,7 @@ type Config struct {
 }
 
 func ReadConfig() (*Config, int) {
-	pwd, _ := os.Getwd()
-	file, err := os.ReadFile(pwd + "\\Source.yaml")
+	file, err := os.ReadFile("./Source.yaml")
 	if err != nil {
 		fmt.Println(err)
 	}
