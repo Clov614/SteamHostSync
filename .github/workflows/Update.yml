@@ -1,0 +1,36 @@
+name: Update
+on:
+  push:
+  schedule:
+    - cron: '0 */2 * * *'
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.18
+
+      - name: Build
+        run: go build -o update.sh
+
+      - name: start
+        run: sh update.sh
+
+      - name: Commit files
+        run: |
+          git config --local user.email "zhenghongyi1225@foxmail.com"
+          git config --global user.name action_bot
+          git add .
+          git commit -m "Auto commit"
+          continue-on-error: true
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
