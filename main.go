@@ -5,6 +5,7 @@ import (
 	"github.com/SteamHostSync/fileIO"
 	"github.com/levigross/grequests"
 	"log"
+	"os"
 	"regexp"
 	"strings"
 	"time"
@@ -46,6 +47,10 @@ func main() {
 	}
 	result += "#Github: https://github.com/Clov614/SteamHostSync\n"
 	fileIO.WriteHost(result, "Hosts")
+	_, err := os.Stat("./README_TEMP.md")
+	if err != nil {
+		return
+	}
 	content := fileIO.Read_tmp()
 	content = strings.Replace(content, "HOST_TARGET", result, 1)
 	fileIO.WriteFile(content, "README.md")
