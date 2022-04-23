@@ -7,7 +7,8 @@
 
 ## 2. 使用方法
 ## 自动方法(使用工具)
-推荐使用Hosts管理工具[SwitchHosts](https://github.com/oldj/SwitchHosts)
+推荐使用Hosts管理工具[SwitchHosts](https://github.com/oldj/SwitchHosts) 
+[SwitchHosts备用下载源](https://nas.iaimi.info/s/nT5pb8jMQp32QwB)
 ### 开机自启动SwitchHosts
 win + R 后执行 `shell:startup`    
 ![](/img/1.png)  
@@ -57,7 +58,7 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.113.10			codeload.github.com
+140.82.113.9			codeload.github.com
 52.217.135.81			github-cloud.s3.amazonaws.com
 52.216.186.75			github-com.s3.amazonaws.com
 52.217.201.201			github-production-release-asset-2e65be.s3.amazonaws.com
@@ -68,21 +69,21 @@ win + R 后执行 `shell:startup`
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-24 00:29:26 
+# Last Update Time : 2022-04-24 01:04:18 
 
 #steam Start
 23.204.9.127			steamcommunity.com
 23.204.9.127			www.steamcommunity.com
 23.53.112.116			store.steampowered.com
-23.45.0.161			api.steampowered.com
+23.204.9.127			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.33.29.72			store.akamai.steamstatic.com
 23.220.246.175			steamcdn-a.akamaihd.net
 23.33.29.68			cdn.akamai.steamstatic.com
 23.3.117.102			steam-chat.com
-23.222.236.17			community.akamai.steamstatic.com
+104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-24 00:29:35 
+# Last Update Time : 2022-04-24 01:04:42 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
