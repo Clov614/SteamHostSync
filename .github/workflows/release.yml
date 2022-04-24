@@ -2,9 +2,9 @@ name: goreleaser
 
 on:
   pull_request:
+    branches-ignore:
+      - "dev"
   push:
-    branch:
-      - "main"
     tags:
       - "v*"
 

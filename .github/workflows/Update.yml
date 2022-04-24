@@ -1,6 +1,10 @@
 name: Update
 on:
   push:
+    tags-ignore:
+      - "v*"
+    branches-ignore:
+      - "dev"
   schedule:
     - cron: '0 */2 * * *'
 
