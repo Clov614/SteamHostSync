@@ -19,7 +19,11 @@ win + R 后执行 `shell:startup`
 如果访问不到GitHub可以尝试将`github.com`替换为`hub.fastgit.xyz`(国内镜像)
 1. ALL: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts`  
 2. Steam: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_steam`  
-3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`  
+3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`    
+`镜像地址:`
+4. All: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts`  
+5. Steam: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_steam`  
+6. github: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_github`  
 
 ![](/img/3.png)
 
@@ -59,7 +63,7 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
 140.82.114.9			codeload.github.com
-52.217.232.73			github-cloud.s3.amazonaws.com
+52.217.38.188			github-cloud.s3.amazonaws.com
 52.216.186.75			github-com.s3.amazonaws.com
 52.217.201.201			github-production-release-asset-2e65be.s3.amazonaws.com
 54.231.130.161			github-production-user-asset-6210df.s3.amazonaws.com
@@ -69,7 +73,7 @@ win + R 后执行 `shell:startup`
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-24 13:54:23 
+# Last Update Time : 2022-04-24 14:22:37 
 
 #steam Start
 23.45.0.161			steamcommunity.com
@@ -83,7 +87,7 @@ win + R 后执行 `shell:startup`
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-24 13:54:30 
+# Last Update Time : 2022-04-24 14:22:43 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
