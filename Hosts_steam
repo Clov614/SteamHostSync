@@ -1,11 +1,7 @@
 #steam Start
 184.86.171.203			steamcommunity.com
 184.86.171.203			www.steamcommunity.com
-<<<<<<< HEAD
 184.27.220.143			store.steampowered.com
-=======
-184.84.224.131			store.steampowered.com
->>>>>>> 9dd3e6c7753c3287cf9193c473c1187fca1aa6f8
 23.204.9.127			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.33.29.72			store.akamai.steamstatic.com
@@ -14,9 +10,5 @@
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-<<<<<<< HEAD
-# Last Update Time : 2022-04-24 13:22:31 
-=======
-# Last Update Time : 2022-04-24 12:26:59 
->>>>>>> 9dd3e6c7753c3287cf9193c473c1187fca1aa6f8
+# Last Update Time : 2022-04-24 13:37:03 
 
