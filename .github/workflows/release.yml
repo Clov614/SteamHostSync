@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branch:
-      - "master"
+      - "main"
     tags:
       - "v*"
 
