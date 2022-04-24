@@ -19,7 +19,11 @@ win + R 后执行 `shell:startup`
 如果访问不到GitHub可以尝试将`github.com`替换为`hub.fastgit.xyz`(国内镜像)
 1. ALL: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts`  
 2. Steam: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_steam`  
-3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`  
+3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`    
+`镜像地址:`
+4. All: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts`  
+5. Steam: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_steam`  
+6. github: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_github`  
 
 ![](/img/3.png)
 
