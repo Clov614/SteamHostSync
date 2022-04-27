@@ -49,7 +49,7 @@ win + R 后执行 `shell:startup`
 199.232.69.194			github.global.ssl.fastly.net
 140.82.114.4			gist.github.com
 185.199.108.153			github.io
-140.82.113.3			github.com
+140.82.113.4			github.com
 192.0.66.2			github.blog
 140.82.113.5			api.github.com
 185.199.108.133			raw.githubusercontent.com
@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 52.151.41.89			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-27 11:48:45 
+# Last Update Time : 2022-04-27 12:49:38 
 
 #steam Start
 23.45.0.161			steamcommunity.com
@@ -87,7 +87,7 @@ win + R 后执行 `shell:startup`
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-27 11:48:52 
+# Last Update Time : 2022-04-27 12:49:48 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
