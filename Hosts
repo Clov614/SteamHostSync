@@ -2,7 +2,7 @@
 140.82.113.26			alive.github.com
 140.82.113.25			live.github.com
 185.199.108.154			github.githubassets.com
-140.82.114.22			central.github.com
+140.82.114.21			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
@@ -23,8 +23,8 @@
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.112.10			codeload.github.com
-52.217.164.129			github-cloud.s3.amazonaws.com
+140.82.113.10			codeload.github.com
+52.216.107.180			github-cloud.s3.amazonaws.com
 52.217.236.249			github-com.s3.amazonaws.com
 54.231.195.105			github-production-release-asset-2e65be.s3.amazonaws.com
 54.231.203.121			github-production-user-asset-6210df.s3.amazonaws.com
@@ -34,12 +34,12 @@
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-28 14:30:29 
+# Last Update Time : 2022-04-28 16:29:32 
 
 #steam Start
 23.204.9.127			steamcommunity.com
 23.204.9.127			www.steamcommunity.com
-96.7.168.77			store.steampowered.com
+23.78.8.100			store.steampowered.com
 23.204.9.127			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.33.29.72			store.akamai.steamstatic.com
@@ -48,6 +48,6 @@
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-28 14:30:39 
+# Last Update Time : 2022-04-28 16:29:42 
 
 #Github: https://github.com/Clov614/SteamHostSync
