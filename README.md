@@ -73,12 +73,12 @@ win + R 后执行 `shell:startup`
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-30 04:23:22 
+# Last Update Time : 2022-04-30 06:22:18 
 
 #steam Start
 104.78.121.166			steamcommunity.com
 104.78.121.166			www.steamcommunity.com
-23.78.8.100			store.steampowered.com
+96.17.60.195			store.steampowered.com
 23.10.91.11			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.33.29.72			store.akamai.steamstatic.com
@@ -87,7 +87,7 @@ win + R 后执行 `shell:startup`
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-30 04:23:32 
+# Last Update Time : 2022-04-30 06:22:28 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
