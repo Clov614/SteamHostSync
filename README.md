@@ -65,7 +65,7 @@ win + R 后执行 `shell:startup`
 140.82.112.9			codeload.github.com
 52.217.77.140			github-cloud.s3.amazonaws.com
 52.217.236.249			github-com.s3.amazonaws.com
-54.231.195.105			github-production-release-asset-2e65be.s3.amazonaws.com
+52.216.28.36			github-production-release-asset-2e65be.s3.amazonaws.com
 54.231.203.121			github-production-user-asset-6210df.s3.amazonaws.com
 52.216.112.67			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-29 16:29:01 
+# Last Update Time : 2022-04-29 18:22:41 
 
 #steam Start
 104.78.121.166			steamcommunity.com
@@ -87,7 +87,7 @@ win + R 后执行 `shell:startup`
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-29 16:29:11 
+# Last Update Time : 2022-04-29 18:22:47 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
