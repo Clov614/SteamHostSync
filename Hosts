@@ -23,7 +23,7 @@
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.112.10			codeload.github.com
+140.82.112.9			codeload.github.com
 52.217.91.92			github-cloud.s3.amazonaws.com
 52.216.143.172			github-com.s3.amazonaws.com
 52.217.195.65			github-production-release-asset-2e65be.s3.amazonaws.com
@@ -34,12 +34,12 @@
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-05-04 20:44:23 
+# Last Update Time : 2022-05-04 22:20:52 
 
 #steam Start
 23.45.0.161			steamcommunity.com
 23.66.66.221			www.steamcommunity.com
-23.203.40.108			store.steampowered.com
+23.200.60.108			store.steampowered.com
 23.45.0.161			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.33.29.72			store.akamai.steamstatic.com
@@ -48,6 +48,6 @@
 23.3.117.102			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-05-04 20:44:32 
+# Last Update Time : 2022-05-04 22:20:58 
 
 #Github: https://github.com/Clov614/SteamHostSync
