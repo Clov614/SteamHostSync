@@ -57,15 +57,15 @@ func main() {
 }
 
 func getip(url string) string {
-	RO := grequests.RequestOptions{
-		UserAgent: (*cf).UA,
-	}
-	resp, err := grequests.Get("https://ipaddress.com/website/"+url, &RO)
+	// RO := grequests.RequestOptions{
+	// 	UserAgent: (*cf).UA,
+	// }
+	resp, err := grequests.Get("https://www.ip-adress.com/website/"+url, nil)
 	if err != nil {
 		log.Fatalln("Unable to make request:", err)
 	}
 
-	re := regexp.MustCompile(`<li>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</li>`)
+	re := regexp.MustCompile(`/ipv4/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})>`)
 	result := re.FindStringSubmatch(resp.String())
 
 	return result[1]
