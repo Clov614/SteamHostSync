@@ -19,7 +19,11 @@ win + R 后执行 `shell:startup`
 如果访问不到GitHub可以尝试将`github.com`替换为`hub.fastgit.xyz`(国内镜像)
 1. ALL: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts`  
 2. Steam: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_steam`  
-3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`  
+3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`    
+`镜像地址:`
+4. All: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts`  
+5. Steam: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_steam`  
+6. github: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_github`  
 
 ![](/img/3.png)
 
@@ -34,18 +38,18 @@ win + R 后执行 `shell:startup`
 
 ```
 #github Start
-140.82.114.26			alive.github.com
-140.82.113.25			live.github.com
+140.82.114.25			alive.github.com
+140.82.114.25			live.github.com
 185.199.108.154			github.githubassets.com
-140.82.113.22			central.github.com
+140.82.114.21			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
 185.199.108.133			github.map.fastly.net
 199.232.69.194			github.global.ssl.fastly.net
-140.82.113.4			gist.github.com
+140.82.114.4			gist.github.com
 185.199.108.153			github.io
-140.82.114.3			github.com
+140.82.112.3			github.com
 192.0.66.2			github.blog
 140.82.114.5			api.github.com
 185.199.108.133			raw.githubusercontent.com
@@ -58,32 +62,32 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.114.9			codeload.github.com
-52.217.232.73			github-cloud.s3.amazonaws.com
-52.216.186.75			github-com.s3.amazonaws.com
-52.217.201.201			github-production-release-asset-2e65be.s3.amazonaws.com
-54.231.130.161			github-production-user-asset-6210df.s3.amazonaws.com
-52.217.92.116			github-production-repository-file-5c1aeb.s3.amazonaws.com
+140.82.114.10			codeload.github.com
+54.231.195.25			github-cloud.s3.amazonaws.com
+52.216.100.147			github-com.s3.amazonaws.com
+52.217.105.68			github-production-release-asset-2e65be.s3.amazonaws.com
+52.217.0.220			github-production-user-asset-6210df.s3.amazonaws.com
+52.216.241.132			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 64.71.144.211			github.community
 23.100.27.125			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-04-24 13:54:23 
+# Last Update Time : 2022-05-16 16:29:37 
 
 #steam Start
 23.45.0.161			steamcommunity.com
-23.45.0.161			www.steamcommunity.com
-184.84.168.96			store.steampowered.com
-23.204.9.127			api.steampowered.com
-104.98.68.175			help.steampowered.com
-23.33.29.72			store.akamai.steamstatic.com
+23.66.66.221			www.steamcommunity.com
+184.27.220.143			store.steampowered.com
+23.45.0.161			api.steampowered.com
+23.45.0.161			help.steampowered.com
+23.222.236.11			store.akamai.steamstatic.com
 23.220.246.175			steamcdn-a.akamaihd.net
 23.33.29.68			cdn.akamai.steamstatic.com
-23.3.117.102			steam-chat.com
+23.66.66.221			steam-chat.com
 104.102.249.194			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-04-24 13:54:30 
+# Last Update Time : 2022-05-16 16:29:43 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
