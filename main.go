@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/SteamHostSync/fileIO"
-	"github.com/levigross/grequests"
 	"log"
 	"os"
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/SteamHostSync/fileIO"
+	"github.com/levigross/grequests"
 )
 
 var cf *fileIO.Config
@@ -33,9 +34,16 @@ func main() {
 				Tempplat = v
 				continue
 			}
-			ip := getip(v)
-			resultTmp += fmt.Sprintf("%s\t\t\t%s\n", ip, v)
-			fmt.Printf("%s\t\t\t%s\n", ip, v)
+			ip, flag := getip(v)
+			log.Println(flag)
+			if flag == false {
+				resultTmp += fmt.Sprintf("%s\t\t\t%s\n", ip, v)
+				fmt.Printf("%s\t\t\t%s\n", ip, v)
+			} else {
+				resultTmp += fmt.Sprintf("####%s\t\t\t%s\n", ip, v)
+				fmt.Printf("####%s\t\t\t%s\n", ip, v)
+			}
+
 		}
 		resultTmp += fmt.Sprintf("#%s End\n", Tempplat)
 		resultTmp += fmt.Sprintf("# Last Update Time : %s \n\n", time.Now().Format("2006-01-02 15:04:05"))
@@ -56,7 +64,14 @@ func main() {
 	fileIO.WriteFile(content, "README.md")
 }
 
-func getip(url string) string {
+func getip(url string) (res string, flag bool) {
+	defer func() {
+		err := recover()
+		if err != nil {
+			log.Println("获取ip错误：", err)
+			flag = true
+		}
+	}()
 	// RO := grequests.RequestOptions{
 	// 	UserAgent: (*cf).UA,
 	// }
@@ -67,6 +82,6 @@ func getip(url string) string {
 
 	re := regexp.MustCompile(`/ipv4/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})>`)
 	result := re.FindStringSubmatch(resp.String())
-
-	return result[1]
+	res = result[1]
+	return
 }
