@@ -38,7 +38,7 @@ win + R 后执行 `shell:startup`
 
 ```
 #github Start
-140.82.114.26			alive.github.com
+140.82.113.26			alive.github.com
 140.82.113.26			live.github.com
 185.199.108.154			github.githubassets.com
 140.82.112.21			central.github.com
@@ -49,9 +49,9 @@ win + R 后执行 `shell:startup`
 151.101.241.194			github.global.ssl.fastly.net
 140.82.114.3			gist.github.com
 185.199.108.153			github.io
-140.82.112.3			github.com
+140.82.121.3			github.com
 192.0.66.2			github.blog
-140.82.114.6			api.github.com
+140.82.121.6			api.github.com
 185.199.108.133			raw.githubusercontent.com
 185.199.108.133			user-images.githubusercontent.com
 185.199.108.133			favicons.githubusercontent.com
@@ -62,32 +62,32 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.112.9			codeload.github.com
+140.82.121.10			codeload.github.com
 52.217.201.57			github-cloud.s3.amazonaws.com
-52.217.204.105			github-com.s3.amazonaws.com
+52.216.238.107			github-com.s3.amazonaws.com
 52.217.205.129			github-production-release-asset-2e65be.s3.amazonaws.com
 52.216.134.251			github-production-user-asset-6210df.s3.amazonaws.com
-52.216.134.251			github-production-repository-file-5c1aeb.s3.amazonaws.com
+52.217.140.137			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 64.71.144.211			github.community
 ####			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-05-18 22:23:32 
+# Last Update Time : 2022-05-19 00:33:55 
 
 #steam Start
-92.122.104.90			steamcommunity.com
+96.6.190.4			steamcommunity.com
 23.38.132.110			www.steamcommunity.com
-184.30.20.74			store.steampowered.com
-23.204.9.127			api.steampowered.com
-92.122.104.90			help.steampowered.com
-23.33.22.75			store.akamai.steamstatic.com
-23.32.238.233			steamcdn-a.akamaihd.net
-23.33.22.85			cdn.akamai.steamstatic.com
-23.204.30.72			steam-chat.com
-184.25.50.128			community.akamai.steamstatic.com
+104.81.240.100			store.steampowered.com
+96.6.190.4			api.steampowered.com
+104.78.121.166			help.steampowered.com
+23.214.97.35			store.akamai.steamstatic.com
+23.220.246.137			steamcdn-a.akamaihd.net
+184.25.50.10			cdn.akamai.steamstatic.com
+2.17.182.211			steam-chat.com
+23.33.22.77			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-05-18 22:23:37 
+# Last Update Time : 2022-05-19 00:34:01 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
