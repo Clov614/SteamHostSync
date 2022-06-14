@@ -47,11 +47,11 @@ win + R 后执行 `shell:startup`
 185.199.108.133			camo.githubusercontent.com
 185.199.108.133			github.map.fastly.net
 199.232.69.194			github.global.ssl.fastly.net
-140.82.113.4			gist.github.com
+140.82.121.4			gist.github.com
 185.199.108.153			github.io
-140.82.121.4			github.com
+140.82.113.3			github.com
 192.0.66.2			github.blog
-140.82.121.5			api.github.com
+140.82.121.6			api.github.com
 185.199.108.133			raw.githubusercontent.com
 185.199.108.133			user-images.githubusercontent.com
 185.199.108.133			favicons.githubusercontent.com
@@ -62,32 +62,32 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.121.10			codeload.github.com
-52.217.162.233			github-cloud.s3.amazonaws.com
+140.82.114.10			codeload.github.com
+52.217.95.105			github-cloud.s3.amazonaws.com
 52.216.37.225			github-com.s3.amazonaws.com
 52.216.177.27			github-production-release-asset-2e65be.s3.amazonaws.com
-52.216.9.67			github-production-user-asset-6210df.s3.amazonaws.com
+52.217.88.252			github-production-user-asset-6210df.s3.amazonaws.com
 52.216.184.243			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 64.71.144.211			github.community
 ####			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-06-15 02:26:19 
+# Last Update Time : 2022-06-15 04:22:59 
 
 #steam Start
-184.30.209.160			steamcommunity.com
+104.100.154.143			steamcommunity.com
 96.17.79.166			www.steamcommunity.com
-23.59.17.67			store.steampowered.com
-104.78.121.166			api.steampowered.com
-92.122.104.90			help.steampowered.com
+184.30.20.74			store.steampowered.com
+104.100.154.143			api.steampowered.com
+23.45.0.161			help.steampowered.com
 23.200.156.205			store.akamai.steamstatic.com
 23.220.246.175			steamcdn-a.akamaihd.net
-23.55.221.137			cdn.akamai.steamstatic.com
+23.200.156.210			cdn.akamai.steamstatic.com
 2.17.182.211			steam-chat.com
 23.216.77.4			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-06-15 02:26:24 
+# Last Update Time : 2022-06-15 04:23:07 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
