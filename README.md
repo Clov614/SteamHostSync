@@ -38,10 +38,10 @@ win + R 后执行 `shell:startup`
 
 ```
 #github Start
-140.82.114.25			alive.github.com
-140.82.113.25			live.github.com
+140.82.114.26			alive.github.com
+140.82.114.26			live.github.com
 185.199.108.154			github.githubassets.com
-140.82.112.22			central.github.com
+140.82.114.22			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
@@ -62,32 +62,32 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars1.githubusercontent.com
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
-140.82.121.10			codeload.github.com
-52.217.95.105			github-cloud.s3.amazonaws.com
+140.82.114.10			codeload.github.com
+52.216.143.76			github-cloud.s3.amazonaws.com
 52.216.37.225			github-com.s3.amazonaws.com
 52.217.134.233			github-production-release-asset-2e65be.s3.amazonaws.com
 52.217.65.28			github-production-user-asset-6210df.s3.amazonaws.com
-52.217.162.233			github-production-repository-file-5c1aeb.s3.amazonaws.com
+54.231.201.241			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 64.71.144.211			github.community
 ####			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-06-15 14:25:56 
+# Last Update Time : 2022-06-15 16:28:40 
 
 #steam Start
-92.122.104.90			steamcommunity.com
+104.98.68.175			steamcommunity.com
 72.247.49.115			www.steamcommunity.com
 184.30.20.74			store.steampowered.com
-104.100.154.143			api.steampowered.com
+184.30.209.160			api.steampowered.com
 92.122.104.90			help.steampowered.com
 184.25.50.171			store.akamai.steamstatic.com
 23.220.246.175			steamcdn-a.akamaihd.net
-23.196.47.11			cdn.akamai.steamstatic.com
+184.25.50.130			cdn.akamai.steamstatic.com
 2.17.182.211			steam-chat.com
-23.200.156.209			community.akamai.steamstatic.com
+23.216.77.4			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-06-15 14:26:04 
+# Last Update Time : 2022-06-15 16:28:48 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
