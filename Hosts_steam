@@ -1,14 +1,14 @@
 #steam Start
-92.122.104.90			steamcommunity.com
+104.126.16.143			steamcommunity.com
 23.222.193.53			www.steamcommunity.com
-23.55.248.81			store.steampowered.com
-92.122.104.90			api.steampowered.com
-104.126.16.143			help.steampowered.com
+184.30.20.74			store.steampowered.com
+23.222.195.237			api.steampowered.com
+23.222.195.237			help.steampowered.com
 23.196.47.113			store.akamai.steamstatic.com
 23.220.246.175			steamcdn-a.akamaihd.net
-184.25.50.130			cdn.akamai.steamstatic.com
+23.196.47.81			cdn.akamai.steamstatic.com
 104.126.9.46			steam-chat.com
-23.64.112.143			community.akamai.steamstatic.com
+184.25.50.128			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-06-20 11:20:50 
+# Last Update Time : 2022-06-20 12:35:55 
 
