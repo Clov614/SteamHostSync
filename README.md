@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 ####			github.dev
 ####			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-10-29 20:40:38 
+# Last Update Time : 2022-10-29 22:21:48 
 
 #steam Start
 ####			steamcommunity.com
@@ -87,7 +87,7 @@ win + R 后执行 `shell:startup`
 ####			steam-chat.com
 ####			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-10-29 20:40:47 
+# Last Update Time : 2022-10-29 22:21:58 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
