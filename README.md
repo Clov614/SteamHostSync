@@ -38,15 +38,63 @@ win + R 后执行 `shell:startup`
 
 ```
 #github Start
+140.82.114.26			alive.github.com
+140.82.113.25			live.github.com
+185.199.108.154			github.githubassets.com
+140.82.112.21			central.github.com
+185.199.108.133			desktop.githubusercontent.com
+185.199.108.153			assets-cdn.github.com
+185.199.108.133			camo.githubusercontent.com
+185.199.108.133			github.map.fastly.net
+151.101.241.194			github.global.ssl.fastly.net
+140.82.114.4			gist.github.com
+185.199.108.153			github.io
+140.82.121.4			github.com
+192.0.66.2			github.blog
+140.82.112.6			api.github.com
+185.199.108.133			raw.githubusercontent.com
+185.199.108.133			user-images.githubusercontent.com
+185.199.108.133			favicons.githubusercontent.com
+185.199.108.133			avatars5.githubusercontent.com
+185.199.108.133			avatars4.githubusercontent.com
+185.199.108.133			avatars3.githubusercontent.com
+185.199.108.133			avatars2.githubusercontent.com
+185.199.108.133			avatars1.githubusercontent.com
+185.199.108.133			avatars0.githubusercontent.com
+185.199.108.133			avatars.githubusercontent.com
+140.82.121.9			codeload.github.com
+54.231.194.41			github-cloud.s3.amazonaws.com
+54.231.195.217			github-com.s3.amazonaws.com
+52.216.105.243			github-production-release-asset-2e65be.s3.amazonaws.com
+52.217.134.209			github-production-user-asset-6210df.s3.amazonaws.com
+52.216.26.68			github-production-repository-file-5c1aeb.s3.amazonaws.com
+185.199.108.153			githubstatus.com
 64.71.144.211			github.community
 ####			github.dev
+185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2022-05-16 23:31:43 
+# Last Update Time : 2022-05-20 17:53:32 
 
 #steam Start
-23.5.72.184			steamcommunity.com
+184.30.209.160			steamcommunity.com
+23.204.30.72			www.steamcommunity.com
+184.30.20.74			store.steampowered.com
+23.45.0.161			api.steampowered.com
+23.45.0.161			help.steampowered.com
+23.222.236.11			store.akamai.steamstatic.com
+23.32.238.233			steamcdn-a.akamaihd.net
+184.25.51.35			cdn.akamai.steamstatic.com
+104.100.128.105			steam-chat.com
+23.64.112.143			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2022-05-16 23:31:44 
+# Last Update Time : 2022-05-20 17:53:41 
+
+#Ubisoft_download Start
+23.2.72.237			static3.cdn.Ubi.com
+23.218.209.103			static2.cdn.Ubi.com
+####			static1.cdn.Ubi.com
+#Ubisoft_download End
+# Last Update Time : 2022-05-20 17:53:46 
 
 #Github: https://github.com/Clov614/SteamHostSync
 

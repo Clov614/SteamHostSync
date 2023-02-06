@@ -2,9 +2,10 @@ package fileIO
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
+
+	"gopkg.in/yaml.v2"
 )
 
 // PathExists
@@ -83,5 +84,11 @@ var urls [][]string = [][]string{
 		"cdn.akamai.steamstatic.com",
 		"steam-chat.com",
 		"community.akamai.steamstatic.com",
+	},
+	{
+		"Ubisoft_download",
+		"static3.cdn.Ubi.com",
+		"static2.cdn.Ubi.com",
+		"static1.cdn.Ubi.com",
 	},
 }
