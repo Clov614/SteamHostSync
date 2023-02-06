@@ -1,4 +1,5 @@
 #steam Start
+<<<<<<< HEAD
 184.30.209.160			steamcommunity.com
 23.204.30.72			www.steamcommunity.com
 184.30.20.74			store.steampowered.com
@@ -11,4 +12,18 @@
 23.64.112.143			community.akamai.steamstatic.com
 #steam End
 # Last Update Time : 2022-05-20 17:53:41 
+=======
+####			steamcommunity.com
+####			www.steamcommunity.com
+####			store.steampowered.com
+####			api.steampowered.com
+####			help.steampowered.com
+####			store.akamai.steamstatic.com
+####			steamcdn-a.akamaihd.net
+####			cdn.akamai.steamstatic.com
+####			steam-chat.com
+####			community.akamai.steamstatic.com
+#steam End
+# Last Update Time : 2023-02-06 22:17:44 
+>>>>>>> 2ba18b2ac3009cd0db48cbcb398f753aeb11854b
 
