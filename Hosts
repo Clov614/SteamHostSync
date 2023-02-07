@@ -2,7 +2,7 @@
 140.82.114.26			alive.github.com
 140.82.113.25			live.github.com
 185.199.108.154			github.githubassets.com
-140.82.112.21			central.github.com
+####			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
@@ -34,27 +34,27 @@
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-02-07 10:40:49 
+# Last Update Time : 2023-02-07 12:22:28 
 
 #steam Start
 23.57.129.89			steamcommunity.com
 23.66.66.221			www.steamcommunity.com
-23.200.197.62			store.steampowered.com
+184.84.168.96			store.steampowered.com
 23.7.115.52			api.steampowered.com
 104.98.68.175			help.steampowered.com
 23.15.9.18			store.akamai.steamstatic.com
-23.220.246.137			steamcdn-a.akamaihd.net
+####			steamcdn-a.akamaihd.net
 23.199.55.31			cdn.akamai.steamstatic.com
 104.127.164.34			steam-chat.com
 23.222.12.16			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-02-07 10:40:52 
+# Last Update Time : 2023-02-07 12:22:31 
 
 #Ubisoft_download Start
 23.2.72.237			static3.cdn.Ubi.com
 23.78.13.109			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-02-07 10:40:53 
+# Last Update Time : 2023-02-07 12:22:32 
 
 #Github: https://github.com/Clov614/SteamHostSync
