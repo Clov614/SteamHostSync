@@ -49,7 +49,7 @@ win + R 后执行 `shell:startup`
 151.101.1.194			github.global.ssl.fastly.net
 140.82.113.3			gist.github.com
 185.199.108.153			github.io
-140.82.112.4			github.com
+140.82.112.3			github.com
 192.0.66.2			github.blog
 140.82.114.6			api.github.com
 185.199.108.133			raw.githubusercontent.com
@@ -67,34 +67,34 @@ win + R 后执行 `shell:startup`
 52.216.12.20			github-com.s3.amazonaws.com
 3.5.1.128			github-production-release-asset-2e65be.s3.amazonaws.com
 3.5.7.115			github-production-user-asset-6210df.s3.amazonaws.com
-3.5.3.211			github-production-repository-file-5c1aeb.s3.amazonaws.com
+52.216.8.107			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 140.82.112.18			github.community
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-03-01 16:25:07 
+# Last Update Time : 2023-03-01 18:20:56 
 
 #steam Start
 23.7.179.224			steamcommunity.com
-23.222.23.208			www.steamcommunity.com
+23.63.202.209			www.steamcommunity.com
 23.50.124.114			store.steampowered.com
-23.0.18.123			api.steampowered.com
-23.33.169.235			help.steampowered.com
+23.45.0.161			api.steampowered.com
+23.0.18.123			help.steampowered.com
 23.48.99.11			store.akamai.steamstatic.com
-23.48.99.17			steamcdn-a.akamaihd.net
-23.222.5.136			cdn.akamai.steamstatic.com
+23.211.124.32			steamcdn-a.akamaihd.net
+23.199.55.31			cdn.akamai.steamstatic.com
 23.0.29.123			steam-chat.com
-23.48.99.73			community.akamai.steamstatic.com
+23.33.29.6			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-03-01 16:25:10 
+# Last Update Time : 2023-03-01 18:20:59 
 
 #Ubisoft_download Start
 184.27.192.229			static3.cdn.Ubi.com
 23.210.1.110			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-03-01 16:25:11 
+# Last Update Time : 2023-03-01 18:21:00 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
