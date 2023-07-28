@@ -73,28 +73,28 @@ win + R 后执行 `shell:startup`
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-07-28 16:19:17 
+# Last Update Time : 2023-07-28 18:16:12 
 
 #steam Start
 104.127.87.210			steamcommunity.com
 23.204.255.70			www.steamcommunity.com
 23.50.124.114			store.steampowered.com
 104.108.99.20			api.steampowered.com
-104.108.99.20			help.steampowered.com
+72.247.49.222			help.steampowered.com
 23.48.99.11			store.akamai.steamstatic.com
 23.222.5.81			steamcdn-a.akamaihd.net
 23.45.233.43			cdn.akamai.steamstatic.com
 104.127.80.173			steam-chat.com
 104.123.153.8			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-07-28 16:19:21 
+# Last Update Time : 2023-07-28 18:16:16 
 
 #Ubisoft_download Start
 104.124.12.155			static3.cdn.Ubi.com
 23.72.233.152			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-07-28 16:19:22 
+# Last Update Time : 2023-07-28 18:16:17 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
