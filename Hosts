@@ -25,16 +25,16 @@
 185.199.108.133			avatars.githubusercontent.com
 140.82.112.9			codeload.github.com
 3.5.10.213			github-cloud.s3.amazonaws.com
-3.5.25.160			github-com.s3.amazonaws.com
-3.5.10.10			github-production-release-asset-2e65be.s3.amazonaws.com
-3.5.3.19			github-production-user-asset-6210df.s3.amazonaws.com
-3.5.25.66			github-production-repository-file-5c1aeb.s3.amazonaws.com
+3.5.29.206			github-com.s3.amazonaws.com
+52.216.62.1			github-production-release-asset-2e65be.s3.amazonaws.com
+3.5.27.219			github-production-user-asset-6210df.s3.amazonaws.com
+3.5.20.102			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
-140.82.112.18			github.community
+140.82.113.18			github.community
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-08-22 18:16:29 
+# Last Update Time : 2023-08-22 20:30:13 
 
 #steam Start
 104.124.156.199			steamcommunity.com
@@ -48,13 +48,13 @@
 104.127.80.173			steam-chat.com
 104.123.153.8			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-08-22 18:16:33 
+# Last Update Time : 2023-08-22 20:30:16 
 
 #Ubisoft_download Start
 104.124.12.155			static3.cdn.Ubi.com
 23.72.233.152			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-08-22 18:16:34 
+# Last Update Time : 2023-08-22 20:30:17 
 
 #Github: https://github.com/Clov614/SteamHostSync
