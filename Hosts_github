@@ -17,7 +17,7 @@
 185.199.108.133			user-images.githubusercontent.com
 185.199.108.133			favicons.githubusercontent.com
 185.199.108.133			avatars5.githubusercontent.com
-10.0.0.138			avatars4.githubusercontent.com
+185.199.108.133			avatars4.githubusercontent.com
 185.199.108.133			avatars3.githubusercontent.com
 185.199.108.133			avatars2.githubusercontent.com
 185.199.108.133			avatars1.githubusercontent.com
@@ -25,7 +25,7 @@
 185.199.108.133			avatars.githubusercontent.com
 140.82.112.10			codeload.github.com
 3.5.1.111			github-cloud.s3.amazonaws.com
-10.0.0.138			github-com.s3.amazonaws.com
+3.5.29.206			github-com.s3.amazonaws.com
 3.5.25.82			github-production-release-asset-2e65be.s3.amazonaws.com
 3.5.27.219			github-production-user-asset-6210df.s3.amazonaws.com
 3.5.20.102			github-production-repository-file-5c1aeb.s3.amazonaws.com
@@ -34,5 +34,5 @@
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-09-21 22:15:21 
+# Last Update Time : 2023-09-22 00:19:49 
 
