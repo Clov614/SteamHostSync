@@ -45,7 +45,7 @@ win + R 后执行 `shell:startup`
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
-10.0.0.3			github.map.fastly.net
+185.199.108.133			github.map.fastly.net
 151.101.1.194			github.global.ssl.fastly.net
 140.82.112.3			gist.github.com
 185.199.108.153			github.io
@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-09-29 18:17:13 
+# Last Update Time : 2023-09-29 20:31:05 
 
 #steam Start
 23.0.18.123			steamcommunity.com
@@ -87,14 +87,14 @@ win + R 后执行 `shell:startup`
 104.104.82.66			steam-chat.com
 104.123.153.8			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-09-29 18:17:25 
+# Last Update Time : 2023-09-29 20:31:09 
 
 #Ubisoft_download Start
 23.60.78.228			static3.cdn.Ubi.com
 23.72.233.152			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-09-29 18:17:31 
+# Last Update Time : 2023-09-29 20:31:10 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
