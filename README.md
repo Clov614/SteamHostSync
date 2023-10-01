@@ -41,17 +41,17 @@ win + R 后执行 `shell:startup`
 140.82.114.25			alive.github.com
 140.82.114.25			live.github.com
 185.199.108.154			github.githubassets.com
-192.118.30.226			central.github.com
+140.82.113.22			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
 185.199.108.133			github.map.fastly.net
 151.101.1.194			github.global.ssl.fastly.net
 140.82.112.3			gist.github.com
-185.199.108.153			github.io
-192.118.30.226			github.com
-192.118.30.226			github.blog
-140.82.113.6			api.github.com
+192.118.30.226			github.io
+140.82.114.3			github.com
+192.0.66.2			github.blog
+192.118.30.226			api.github.com
 185.199.108.133			raw.githubusercontent.com
 185.199.108.133			user-images.githubusercontent.com
 185.199.108.133			favicons.githubusercontent.com
@@ -65,15 +65,15 @@ win + R 后执行 `shell:startup`
 140.82.112.10			codeload.github.com
 3.5.25.226			github-cloud.s3.amazonaws.com
 16.182.73.65			github-com.s3.amazonaws.com
-192.118.30.226			github-production-release-asset-2e65be.s3.amazonaws.com
-192.118.30.226			github-production-user-asset-6210df.s3.amazonaws.com
+3.5.19.145			github-production-release-asset-2e65be.s3.amazonaws.com
+3.5.28.115			github-production-user-asset-6210df.s3.amazonaws.com
 3.5.10.23			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 140.82.114.17			github.community
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2023-10-01 18:15:19 
+# Last Update Time : 2023-10-01 20:28:55 
 
 #steam Start
 23.0.18.123			steamcommunity.com
@@ -87,14 +87,14 @@ win + R 后执行 `shell:startup`
 104.104.82.66			steam-chat.com
 104.123.153.8			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2023-10-01 18:15:22 
+# Last Update Time : 2023-10-01 20:29:06 
 
 #Ubisoft_download Start
 23.60.78.228			static3.cdn.Ubi.com
 23.72.233.152			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2023-10-01 18:15:23 
+# Last Update Time : 2023-10-01 20:29:10 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
