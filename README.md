@@ -41,7 +41,7 @@ win + R 后执行 `shell:startup`
 140.82.112.25			alive.github.com
 140.82.114.25			live.github.com
 185.199.108.154			github.githubassets.com
-140.82.114.21			central.github.com
+140.82.114.22			central.github.com
 185.199.108.133			desktop.githubusercontent.com
 185.199.108.153			assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
@@ -64,16 +64,16 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars.githubusercontent.com
 140.82.114.10			codeload.github.com
 3.5.8.146			github-cloud.s3.amazonaws.com
-3.5.25.160			github-com.s3.amazonaws.com
-3.5.25.214			github-production-release-asset-2e65be.s3.amazonaws.com
-3.5.25.53			github-production-user-asset-6210df.s3.amazonaws.com
-3.5.25.136			github-production-repository-file-5c1aeb.s3.amazonaws.com
+3.5.9.100			github-com.s3.amazonaws.com
+3.5.25.167			github-production-release-asset-2e65be.s3.amazonaws.com
+3.5.1.152			github-production-user-asset-6210df.s3.amazonaws.com
+3.5.28.211			github-production-repository-file-5c1aeb.s3.amazonaws.com
 185.199.108.153			githubstatus.com
 140.82.112.17			github.community
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2024-01-12 16:21:29 
+# Last Update Time : 2024-01-12 18:18:25 
 
 #steam Start
 23.0.18.123			steamcommunity.com
@@ -87,14 +87,14 @@ win + R 后执行 `shell:startup`
 23.79.56.40			steam-chat.com
 104.123.153.8			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2024-01-12 16:21:32 
+# Last Update Time : 2024-01-12 18:18:31 
 
 #Ubisoft_download Start
 23.222.201.62			static3.cdn.Ubi.com
 23.218.189.205			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2024-01-12 16:21:33 
+# Last Update Time : 2024-01-12 18:18:32 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
