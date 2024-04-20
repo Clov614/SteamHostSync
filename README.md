@@ -38,7 +38,7 @@ win + R 后执行 `shell:startup`
 
 ```
 #github Start
-140.82.113.26			alive.github.com
+140.82.112.26			alive.github.com
 140.82.112.26			live.github.com
 185.199.108.154			github.githubassets.com
 140.82.114.22			central.github.com
@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2024-04-20 22:13:24 
+# Last Update Time : 2024-04-21 00:20:14 
 
 #steam Start
 23.210.138.105			steamcommunity.com
@@ -87,14 +87,14 @@ win + R 后执行 `shell:startup`
 23.66.227.126			steam-chat.com
 23.45.233.40			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2024-04-20 22:13:27 
+# Last Update Time : 2024-04-21 00:20:18 
 
 #Ubisoft_download Start
 23.46.193.64			static3.cdn.Ubi.com
 23.218.189.205			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2024-04-20 22:13:28 
+# Last Update Time : 2024-04-21 00:20:19 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
