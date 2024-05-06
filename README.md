@@ -63,7 +63,7 @@ win + R 后执行 `shell:startup`
 185.199.108.133			avatars0.githubusercontent.com
 185.199.108.133			avatars.githubusercontent.com
 140.82.113.10			codeload.github.com
-3.5.17.101			github-cloud.s3.amazonaws.com
+3.5.20.23			github-cloud.s3.amazonaws.com
 3.5.25.41			github-com.s3.amazonaws.com
 3.5.22.29			github-production-release-asset-2e65be.s3.amazonaws.com
 16.182.71.209			github-production-user-asset-6210df.s3.amazonaws.com
@@ -73,7 +73,7 @@ win + R 后执行 `shell:startup`
 52.224.38.193			github.dev
 185.199.108.133			media.githubusercontent.com
 #github End
-# Last Update Time : 2024-05-06 09:14:12 
+# Last Update Time : 2024-05-06 10:30:01 
 
 #steam Start
 104.102.129.112			steamcommunity.com
@@ -87,14 +87,14 @@ win + R 后执行 `shell:startup`
 23.66.227.126			steam-chat.com
 23.45.233.40			community.akamai.steamstatic.com
 #steam End
-# Last Update Time : 2024-05-06 09:14:19 
+# Last Update Time : 2024-05-06 10:30:06 
 
 #Ubisoft_download Start
 23.46.193.64			static3.cdn.Ubi.com
 23.218.189.205			static2.cdn.Ubi.com
 ####			static1.cdn.Ubi.com
 #Ubisoft_download End
-# Last Update Time : 2024-05-06 09:14:23 
+# Last Update Time : 2024-05-06 10:30:07 
 
 #Github: https://github.com/Clov614/SteamHostSync
 
