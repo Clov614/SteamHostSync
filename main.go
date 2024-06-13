@@ -81,12 +81,14 @@ func getip(url string) (res string, flag bool) {
 	//	//UserAgent:          (*cf).UA,
 	//	//Host:               "www.ipaddress.com",
 	//}
-	resp, err := grequests.Get("https://www.ipaddress.com/site/"+strings.TrimSpace(url), nil)
+	
+
+	resp, err := grequests.Get("https://dns.google/resolve?type=A&name=" + strings.TrimSpace(url), nil)
 	if err != nil {
 		log.Fatalln("Unable to make request:", err)
 	}
-	re := regexp.MustCompile(`/ipv4/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})">`)
+	re := regexp.MustCompile(`\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}`)
 	result := re.FindStringSubmatch(resp.String())
-	res = result[1]
+	res = result[0]
 	return
 }
