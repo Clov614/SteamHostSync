@@ -51,3 +51,12 @@ platforms:
   - static3.cdn.Ubi.com
   - static2.cdn.Ubi.com
   - static1.cdn.Ubi.com
+- - docker
+  - docker.com
+  - hub.docker.com
+  - docs.docker.com
+  - login.docker.com
+  - registry.hub.docker.com
+  - docker.io
+  - registry-1.docker.io
+  - index.docker.io
