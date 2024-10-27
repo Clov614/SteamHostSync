@@ -60,3 +60,12 @@ platforms:
   - docker.io
   - registry-1.docker.io
   - index.docker.io
+- - gog galaxy
+  - auth.gog.com
+  - www.gogalaxy.com
+  - remote-config.gog.com
+  - insights-collector.gog.com
+  - gameplay.gog.com
+  - gamesdb.gog.com
+  - external-accounts.gog.com
+  - www.gog.com
