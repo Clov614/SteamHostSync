@@ -1,12 +1,12 @@
 #docker Start
 141.193.213.20			docker.com
-44.221.37.199			hub.docker.com
-18.160.10.89			docs.docker.com
-104.19.167.24			login.docker.com
-54.198.86.24			registry.hub.docker.com
-52.44.227.212			docker.io
+52.44.227.212			hub.docker.com
+18.155.202.73			docs.docker.com
+104.19.168.24			login.docker.com
+54.227.20.253			registry.hub.docker.com
+44.221.37.199			docker.io
 54.198.86.24			registry-1.docker.io
-54.198.86.24			index.docker.io
+54.227.20.253			index.docker.io
 #docker End
-# Last Update Time : 2024-11-07 20:35:32 
+# Last Update Time : 2024-11-08 09:23:04 
 
