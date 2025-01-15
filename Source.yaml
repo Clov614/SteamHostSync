@@ -36,6 +36,7 @@ platforms:
   - github.community
   - github.dev
   - media.githubusercontent.com
+  - store.steampowered.com
 - - steam
   - steamcommunity.com
   - www.steamcommunity.com
