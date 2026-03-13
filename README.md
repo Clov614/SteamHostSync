@@ -16,14 +16,15 @@ win + R 后执行 `shell:startup`
 ![](/img/2.png)  
 ### 配置SwitchHosts实现自动更新  
 可选的URL有:
-如果访问不到GitHub可以尝试将`github.com`替换为`hub.fastgit.xyz`(国内镜像)
-1. ALL: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts`  
-2. Steam: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_steam`  
-3. github: `https://raw.githubusercontent.com/Clov614/SteamHostSync/main/Hosts_github`    
-`镜像地址:`
-4. All: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts`  
-5. Steam: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_steam`  
-6. github: `https://raw.sevencdn.com/Clov614/SteamHostSync/main/Hosts_github`  
+主源（jsDelivr）:
+1. ALL: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
+2. Steam: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`
+3. github: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
+备用源（Statically）:
+4. ALL: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
+5. Steam: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
+6. github: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
+说明：若主源访问失败，请切换到对应的备用源链接。
 
 ![](/img/3.png)
 
