@@ -1,191 +1,105 @@
+[![License](https://img.shields.io/github/license/Clov614/SteamHostSync)](./LICENSE)
+[![Go](https://img.shields.io/badge/Go-project-00ADD8?logo=go&logoColor=white)](#usage)
+[![Platform](https://img.shields.io/badge/Platforms-Windows%20%7C%20macOS%20%7C%20Linux-555)](#manual-setup)
+
 # SteamHostSync
-第一次用go写的项目，写的比较烂，欢迎大佬指出错误。
 
-## 1. 实现
-对Hosts进行一个新的更  
-解决Steam、github访问问题
+SteamHostSync is a small Go utility and hosts-file bundle for users who want a faster way to maintain host mappings for Steam, GitHub, Docker, GOG Galaxy, and related domains.
 
-## 2. 使用方法
-## 自动方法(使用工具)
-推荐使用Hosts管理工具[SwitchHosts](https://github.com/oldj/SwitchHosts) 
-[SwitchHosts备用下载源](https://nas.iaimi.info/s/nT5pb8jMQp32QwB)
-### 开机自启动SwitchHosts
-win + R 后执行 `shell:startup`    
-![](/img/1.png)  
-将快捷方式复制进去即可  
-![](/img/2.png)  
-### 配置SwitchHosts实现自动更新  
-可选的URL有:
-主源（jsDelivr）:
-1. ALL: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
-2. Steam: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`
-3. github: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
-备用源（Statically）:
-4. ALL: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
-5. Steam: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
-6. github: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
-说明：若主源访问失败，请切换到对应的备用源链接。
+It can generate updated host files from `Source.yaml`, and the repository also publishes ready-to-use `Hosts*` files that can be consumed directly.
 
-![](/img/3.png)
+## Table of Contents
+- [What it does](#what-it-does)
+- [Usage](#usage)
+- [Manual setup](#manual-setup)
+- [Customize host sources](#customize-host-sources)
+- [Repository structure](#repository-structure)
+- [Notes](#notes)
 
-## 手动方式
-#### 1. hosts 文件在每个系统的位置不一，详情如下:
-- Windows 系统：`C:\Windows\System32\drivers\etc\hosts`
-- Linux 系统：`/etc/hosts`
-- Mac（苹果电脑）系统：`/etc/hosts`
+## What it does
 
-#### 2. 修改方法
-复制下面的内容至hosts尾部(追加在文本末尾)
+- resolves IPs for predefined platform domains
+- writes combined and per-platform host files
+- supports direct consumption through hosted raw files
+- works well with tools such as SwitchHosts for automatic refreshes
 
-```
-#github Start
-140.82.114.26			alive.github.com
-140.82.114.26			live.github.com
-185.199.108.215			github.githubassets.com
-140.82.113.21			central.github.com
-185.199.110.133			desktop.githubusercontent.com
-####			assets-cdn.github.com
-185.199.110.133			camo.githubusercontent.com
-185.199.108.133			github.map.fastly.net
-151.101.193.194			github.global.ssl.fastly.net
-140.82.112.3			gist.github.com
-185.199.111.153			github.io
-140.82.113.3			github.com
-192.0.66.2			github.blog
-140.82.113.6			api.github.com
-185.199.110.133			raw.githubusercontent.com
-185.199.111.133			user-images.githubusercontent.com
-185.199.111.133			favicons.githubusercontent.com
-185.199.111.133			avatars5.githubusercontent.com
-185.199.108.133			avatars4.githubusercontent.com
-185.199.109.133			avatars3.githubusercontent.com
-185.199.108.133			avatars2.githubusercontent.com
-185.199.111.133			avatars1.githubusercontent.com
-185.199.108.133			avatars0.githubusercontent.com
-185.199.108.133			avatars.githubusercontent.com
-140.82.112.9			codeload.github.com
-52.216.219.209			github-cloud.s3.amazonaws.com
-52.217.73.220			github-com.s3.amazonaws.com
-16.15.245.189			github-production-release-asset-2e65be.s3.amazonaws.com
-16.15.213.38			github-production-user-asset-6210df.s3.amazonaws.com
-52.217.161.97			github-production-repository-file-5c1aeb.s3.amazonaws.com
-185.199.111.153			githubstatus.com
-140.82.112.17			github.community
-52.224.38.193			github.dev
-185.199.110.133			media.githubusercontent.com
-23.3.133.209			store.steampowered.com
-#github End
-# Last Update Time : 2026-04-24 10:52:04 
+## Usage
 
-#steam Start
-23.1.47.193			steamcommunity.com
-104.94.122.13			www.steamcommunity.com
-23.3.133.209			store.steampowered.com
-23.1.47.193			api.steampowered.com
-23.1.47.193			help.steampowered.com
-23.3.13.168			store.akamai.steamstatic.com
-23.215.0.133			steamcdn-a.akamaihd.net
-23.3.13.152			cdn.akamai.steamstatic.com
-104.94.122.13			steam-chat.com
-23.3.13.152			community.akamai.steamstatic.com
-#steam End
-# Last Update Time : 2026-04-24 10:52:04 
+### Option 1, use with SwitchHosts
 
-#Ubisoft_download Start
-23.222.201.62			static3.cdn.Ubi.com
-23.221.242.5			static2.cdn.Ubi.com
-2.16.40.64			static1.cdn.Ubi.com
-#Ubisoft_download End
-# Last Update Time : 2026-04-24 10:52:04 
+Recommended tool: [SwitchHosts](https://github.com/oldj/SwitchHosts)
 
-#docker Start
-23.185.0.4			docker.com
-172.64.144.69			hub.docker.com
-18.160.10.27			docs.docker.com
-104.18.43.182			login.docker.com
-44.221.2.19			registry.hub.docker.com
-54.163.203.83			docker.io
-50.19.60.231			registry-1.docker.io
-100.27.240.114			index.docker.io
-#docker End
-# Last Update Time : 2026-04-24 10:52:04 
+Available subscription URLs:
 
-#gog galaxy Start
-151.101.129.55			auth.gog.com
-151.101.193.55			www.gogalaxy.com
-151.101.1.55			remote-config.gog.com
-151.101.193.55			insights-collector.gog.com
-151.101.65.55			gameplay.gog.com
-151.101.65.55			gamesdb.gog.com
-151.101.193.55			external-accounts.gog.com
-151.101.65.55			www.gog.com
-#gog galaxy End
-# Last Update Time : 2026-04-24 10:52:04 
+**jsDelivr**
+1. `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
+2. `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`
+3. `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
 
-#Github: https://github.com/Clov614/SteamHostSync
+**Statically backup**
+4. `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
+5. `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
+6. `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
 
+If one CDN is slow or unavailable, switch to the matching backup URL.
+
+### Option 2, build and run locally
+
+```bash
+git clone https://github.com/Clov614/SteamHostSync.git
+cd SteamHostSync
+go run .
 ```
 
-## 激活生效
-大部分情况下是直接生效，如未生效可尝试下面的办法，刷新 DNS：
-1. Windows：在 CMD 窗口输入：`ipconfig /flushdns`
-2. Linux 命令：`sudo nscd restart`
-3. Mac 命令：`sudo killall -HUP mDNSResponder`  
+This reads `Source.yaml`, resolves the configured domains, and writes updated `Hosts` files.
 
-## 手动配置Source.yaml文件添加新hosts  
-手动下载可执行文件第一次执行后会在目录生成Source.yaml文件，可手动配置。  
+## Manual setup
 
-```
-ua : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36
+### Hosts file locations
+- Windows: `C:\Windows\System32\drivers\etc\hosts`
+- Linux: `/etc/hosts`
+- macOS: `/etc/hosts`
+
+### Apply the generated hosts entries
+1. Copy the relevant entries into your local hosts file.
+2. Save the file with administrator privileges.
+3. Refresh DNS if changes do not take effect immediately.
+
+### Refresh DNS
+- Windows: `ipconfig /flushdns`
+- Linux: `sudo nscd restart`
+- macOS: `sudo killall -HUP mDNSResponder`
+
+## Customize host sources
+
+Edit `Source.yaml` to add or remove platform groups and domains.
+
+Each platform entry uses this shape:
+
+```yaml
 platforms:
-  -
-    #github :
-    - github            #数组的第一个值为对应平台
-    - alive.github.com  #后续值为需要解析ip地址的域名
-    - live.github.com
-    - github.githubassets.com
-    - central.github.com
-    - desktop.githubusercontent.com
-    - assets-cdn.github.com
-    - camo.githubusercontent.com
-    - github.map.fastly.net
-    - github.global.ssl.fastly.net
-    - gist.github.com
-    - github.io
+  - - github
+    - alive.github.com
     - github.com
-    - github.blog
-    - api.github.com
-    - raw.githubusercontent.com
-    - user-images.githubusercontent.com
-    - favicons.githubusercontent.com
-    - avatars5.githubusercontent.com
-    - avatars4.githubusercontent.com
-    - avatars3.githubusercontent.com
-    - avatars2.githubusercontent.com
-    - avatars1.githubusercontent.com
-    - avatars0.githubusercontent.com
-    - avatars.githubusercontent.com
-    - codeload.github.com
-    - github-cloud.s3.amazonaws.com
-    - github-com.s3.amazonaws.com
-    - github-production-release-asset-2e65be.s3.amazonaws.com
-    - github-production-user-asset-6210df.s3.amazonaws.com
-    - github-production-repository-file-5c1aeb.s3.amazonaws.com
-    - githubstatus.com
-    - github.community
-    - github.dev
-    - media.githubusercontent.com
-  -
-    #steam:
-    - steam
-    - steamcommunity.com
-    - www.steamcommunity.com
-    - store.steampowered.com
-    - api.steampowered.com
-    - help.steampowered.com
-    - store.akamai.steamstatic.com
-    - steamcdn-a.akamaihd.net
-    - cdn.akamai.steamstatic.com
-    - steam-chat.com
-    - community.akamai.steamstatic.com
 ```
+
+The first value is the group name. The remaining values are the domains to resolve.
+
+## Repository structure
+
+```text
+main.go        Entry point for generating host files
+fileIO/        Config and file helpers
+Source.yaml    Domain source configuration
+Hosts*         Generated output files
+img/           Screenshots used in the repo
+```
+
+## Notes
+
+- This project changes network resolution through the local hosts file, so review entries before applying them.
+- Some domains may change IPs over time, which is why regenerating or refreshing the files matters.
+
+## License
+
+See [`LICENSE`](./LICENSE).
