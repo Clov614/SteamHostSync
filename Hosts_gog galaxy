@@ -1,12 +1,12 @@
 #gog galaxy Start
-151.101.65.241			auth.gog.com
-151.101.193.241			www.gogalaxy.com
-151.101.1.241			remote-config.gog.com
-151.101.193.241			insights-collector.gog.com
-151.101.193.241			gameplay.gog.com
+151.101.193.241			auth.gog.com
+151.101.129.241			www.gogalaxy.com
+151.101.129.241			remote-config.gog.com
+151.101.129.241			insights-collector.gog.com
+151.101.129.241			gameplay.gog.com
 151.101.129.241			gamesdb.gog.com
-151.101.65.241			external-accounts.gog.com
+151.101.193.241			external-accounts.gog.com
 151.101.129.241			www.gog.com
 #gog galaxy End
-# Last Update Time : 2026-06-17 23:37:31 
+# Last Update Time : 2026-06-18 12:13:02 
 
