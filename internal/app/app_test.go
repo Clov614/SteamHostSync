@@ -42,6 +42,14 @@ func (failProber) Latency(_ context.Context, _ string, _ int) (time.Duration, er
 	return 0, errors.New("connection refused")
 }
 
+// blockingResolver 阻塞直到 ctx 取消，用于验证取消传播。
+type blockingResolver struct{}
+
+func (blockingResolver) LookupA(ctx context.Context, _ string) ([]string, error) {
+	<-ctx.Done()
+	return nil, ctx.Err()
+}
+
 // newTestConfig 构造一个含给定平台的合法配置。
 func newTestConfig() *config.Config {
 	return &config.Config{
@@ -142,6 +150,36 @@ func TestRunProbeDegraded(t *testing.T) {
 	}
 	if !strings.Contains(string(data), "1.1.1.1\t\t\talpha.example\n# probe-failed\n") {
 		t.Errorf("expected degraded entry with probe-failed note:\n%s", data)
+	}
+}
+
+// TestRunContextCancelled 验证运行中取消：run 返回 context.Canceled 且不写出任何产物。
+func TestRunContextCancelled(t *testing.T) {
+	dir := t.TempDir()
+	cfg := newTestConfig()
+	ctx, cancel := context.WithCancel(context.Background())
+
+	done := make(chan error, 1)
+	go func() {
+		done <- run(ctx, cfg, blockingResolver{}, okProber{}, dir, "")
+	}()
+
+	time.Sleep(100 * time.Millisecond)
+	cancel()
+
+	select {
+	case err := <-done:
+		if err == nil || !errors.Is(err, context.Canceled) {
+			t.Fatalf("run() error = %v, want context.Canceled", err)
+		}
+	case <-time.After(5 * time.Second):
+		t.Fatal("run() did not return after cancellation")
+	}
+
+	// 不应写出任何产物
+	entries, _ := os.ReadDir(dir)
+	for _, e := range entries {
+		t.Errorf("unexpected output after cancellation: %s", e.Name())
 	}
 }
 

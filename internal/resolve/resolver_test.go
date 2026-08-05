@@ -146,6 +146,25 @@ func TestMultiResolverTimeout(t *testing.T) {
 	}
 }
 
+// TestMultiResolverDedupAndSorted 验证多上游返回相同 IP 时去重，且输出按字典序稳定。
+func TestMultiResolverDedupAndSorted(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/dns-json")
+		_, _ = w.Write([]byte(`{"Answer":[{"type":1,"data":"5.6.7.8"},{"type":1,"data":"1.2.3.4"}]}`))
+	}))
+	defer srv.Close()
+
+	r := NewMultiResolver([]string{srv.URL, srv.URL}, nil, 3*time.Second)
+	ips, err := r.LookupA(context.Background(), "example.com")
+	if err != nil {
+		t.Fatalf("LookupA() error = %v", err)
+	}
+	// 两个上游返回相同集合 → 去重后仅 2 个，且排序稳定
+	if len(ips) != 2 || ips[0] != "1.2.3.4" || ips[1] != "5.6.7.8" {
+		t.Errorf("LookupA() = %v, want sorted deduped [1.2.3.4 5.6.7.8]", ips)
+	}
+}
+
 // TestResolverInterfaceSatisfied 编译期断言 MultiResolver 实现 Resolver。
 func TestResolverInterfaceSatisfied(t *testing.T) {
 	var _ Resolver = (*MultiResolver)(nil)

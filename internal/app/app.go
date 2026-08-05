@@ -3,6 +3,7 @@ package app
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -67,25 +68,33 @@ func run(ctx context.Context, cfg *config.Config, resolver resolve.Resolver, pro
 //   - 单域名 DoH 全失败 → 生成注释行，不阻塞
 //   - 单平台全部域名失败 → 记录 warn，跳过该平台文件
 //   - 全部平台全失败 → 返回 error
+//   - 父 ctx 被取消 → 返回 context.Canceled 且不写盘
 func gather(ctx context.Context, cfg *config.Config, resolver resolve.Resolver, prober probe.Prober) ([]render.Result, error) {
 	results := make([]render.Result, len(cfg.Platforms))
 	g, gctx := errgroup.WithContext(ctx)
 	g.SetLimit(cfg.Concurrency)
 
+	started := time.Now()
 	var mu sync.Mutex
 	platformOK := 0
 
 	for pi := range cfg.Platforms {
 		pi := pi
 		g.Go(func() error {
-			entries, ok := resolvePlatform(gctx, cfg.Platforms[pi], cfg.Probe.Port, resolver, prober)
+			if gctx.Err() != nil {
+				return gctx.Err()
+			}
+			entries, ok, err := resolvePlatform(gctx, cfg.Platforms[pi], cfg.Probe.Port, resolver, prober)
+			if err != nil {
+				return err
+			}
 			mu.Lock()
 			defer mu.Unlock()
 			if ok {
 				results[pi] = render.Result{
 					Platform: cfg.Platforms[pi].Name,
 					Entries:  entries,
-					At:       time.Now(),
+					At:       started,
 				}
 				platformOK++
 			} else {
@@ -96,7 +105,7 @@ func gather(ctx context.Context, cfg *config.Config, resolver resolve.Resolver, 
 	}
 
 	if err := g.Wait(); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("gather: %w", err)
 	}
 
 	// 抽出有有效条目的平台，保持配置顺序。
@@ -112,16 +121,23 @@ func gather(ctx context.Context, cfg *config.Config, resolver resolve.Resolver, 
 	return out, nil
 }
 
-// resolvePlatform 解析单个平台的所有域名。返回条目列表与"是否至少有一个有效条目"。
-func resolvePlatform(ctx context.Context, p config.Platform, port int, resolver resolve.Resolver, prober probe.Prober) ([]render.Entry, bool) {
+// resolvePlatform 解析单个平台的所有域名。返回条目列表、是否有有效条目，以及可能的取消错误。
+// 父 ctx 取消时返回 context.Canceled/DeadlineExceeded，由上层中止整个流水线。
+func resolvePlatform(ctx context.Context, p config.Platform, port int, resolver resolve.Resolver, prober probe.Prober) ([]render.Entry, bool, error) {
 	entries := make([]render.Entry, 0, len(p.Domains))
 	for _, raw := range p.Domains {
+		if err := ctx.Err(); err != nil {
+			return entries, false, err
+		}
 		dom := strings.TrimSpace(raw)
 		if dom == "" {
 			continue
 		}
 		ips, err := resolver.LookupA(ctx, dom)
 		if err != nil {
+			if errors.Is(err, context.Canceled) || errors.Is(err, context.DeadlineExceeded) {
+				return entries, false, err
+			}
 			entries = append(entries, render.Entry{Domain: dom})
 			continue
 		}
@@ -142,5 +158,5 @@ func resolvePlatform(ctx context.Context, p config.Platform, port int, resolver 
 			break
 		}
 	}
-	return entries, ok
+	return entries, ok, nil
 }
