@@ -1,4 +1,4 @@
-module github.com/SteamHostSync
+module github.com/Clov614/SteamHostSync
 
 go 1.22
 

@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/SteamHostSync/internal/fileio"
+	"github.com/Clov614/SteamHostSync/internal/fileio"
 )
 
 // HostTargetMarker 是 README 模板中的 hosts 内容占位符。
