@@ -9,7 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/SteamHostSync/internal/app"
+	"github.com/Clov614/SteamHostSync/internal/app"
 )
 
 func main() {

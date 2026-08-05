@@ -13,10 +13,10 @@ import (
 
 	"golang.org/x/sync/errgroup"
 
-	"github.com/SteamHostSync/internal/config"
-	"github.com/SteamHostSync/internal/probe"
-	"github.com/SteamHostSync/internal/render"
-	"github.com/SteamHostSync/internal/resolve"
+	"github.com/Clov614/SteamHostSync/internal/config"
+	"github.com/Clov614/SteamHostSync/internal/probe"
+	"github.com/Clov614/SteamHostSync/internal/render"
+	"github.com/Clov614/SteamHostSync/internal/resolve"
 )
 
 // DefaultConfigPath 与 DefaultOutputDir 是 main 使用的默认路径。

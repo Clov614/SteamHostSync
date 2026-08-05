@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/SteamHostSync/internal/config"
+	"github.com/Clov614/SteamHostSync/internal/config"
 )
 
 // ---- fakes ----
