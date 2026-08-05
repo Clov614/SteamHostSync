@@ -31,11 +31,8 @@ func AtomicWrite(path string, content []byte) error {
 	}
 
 	if err := os.Rename(tmpName, path); err != nil {
-		// Windows 上目标已存在时 Rename 失败，先删除再重试（尽力而为）。
-		_ = os.Remove(path)
-		if rerr := os.Rename(tmpName, path); rerr != nil {
-			return fmt.Errorf("rename %s to %s: %w", tmpName, path, rerr)
-		}
+		// 失败时保留原文件不动（临时文件由 defer 清理），避免数据丢失。
+		return fmt.Errorf("rename %s to %s: %w", tmpName, path, err)
 	}
 	tmpName = ""
 	return nil

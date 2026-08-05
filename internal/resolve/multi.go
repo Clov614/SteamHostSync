@@ -3,7 +3,9 @@ package resolve
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -67,10 +69,17 @@ func (m *MultiResolver) LookupA(ctx context.Context, domain string) ([]string, e
 	if !anySuccess {
 		return nil, fmt.Errorf("resolve %s: all dns servers failed (%s)", domain, strings.Join(errs, "; "))
 	}
+	// 部分上游失败时记录错误，便于排查劣质上游。
+	if len(errs) > 0 {
+		log.Printf("resolve %s: %d/%d servers failed (%s)",
+			domain, len(errs), len(m.servers), strings.Join(errs, "; "))
+	}
 
 	out := make([]string, 0, len(seen))
 	for ip := range seen {
 		out = append(out, ip)
 	}
+	// 排序保证输出确定、可复现（fallback IP 与产物不随 map 迭代漂移）。
+	sort.Strings(out)
 	return out, nil
 }

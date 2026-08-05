@@ -125,6 +125,11 @@ platforms:
 			want: "dns_servers must not be empty",
 		},
 		{
+			name: "invalid dns url",
+			data: strings.Replace(validBase, "https://dns.alidns.com/resolve", "not-a-url", 1),
+			want: "invalid URL",
+		},
+		{
 			name: "empty platforms",
 			data: strings.Replace(validBase, "platforms:\n  - name: github\n    domains: [github.com]\n", "", 1),
 			want: "platforms must not be empty",

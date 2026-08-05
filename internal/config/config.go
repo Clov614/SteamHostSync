@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	"fmt"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -120,6 +121,10 @@ func (c *Config) Validate() error {
 	for _, s := range c.DNSServers {
 		if strings.TrimSpace(s) == "" {
 			return errors.New("dns_servers contains an empty URL")
+		}
+		u, err := url.Parse(s)
+		if err != nil || (u.Scheme != "http" && u.Scheme != "https") || u.Host == "" {
+			return fmt.Errorf("dns_servers contains invalid URL %q", s)
 		}
 	}
 	if len(c.Platforms) == 0 {
