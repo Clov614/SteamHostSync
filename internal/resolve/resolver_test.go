@@ -60,6 +60,36 @@ func TestDohQueryMalformedJSON(t *testing.T) {
 	}
 }
 
+// TestDohQueryNXDOMAIN 验证 NXDOMAIN(RCODE=3) 是合法空结果而非错误。
+func TestDohQueryNXDOMAIN(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/dns-json")
+		_, _ = w.Write([]byte(`{"Status":3,"Answer":[]}`))
+	}))
+	defer srv.Close()
+
+	ips, err := dohQuery(context.Background(), srv.Client(), srv.URL, "nonexistent.example")
+	if err != nil {
+		t.Fatalf("NXDOMAIN should be a valid empty result, got error: %v", err)
+	}
+	if len(ips) != 0 {
+		t.Errorf("ips = %v, want empty", ips)
+	}
+}
+
+// TestDohQueryServfail 验证 SERVFAIL(RCODE=2) 视为上游失败返回错误。
+func TestDohQueryServfail(t *testing.T) {
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.Header().Set("Content-Type", "application/dns-json")
+		_, _ = w.Write([]byte(`{"Status":2,"Answer":[]}`))
+	}))
+	defer srv.Close()
+
+	if _, err := dohQuery(context.Background(), srv.Client(), srv.URL, "example.com"); err == nil {
+		t.Fatal("expected error for RCODE SERVFAIL")
+	}
+}
+
 func TestFilterUnusable(t *testing.T) {
 	in := []string{
 		"1.2.3.4",

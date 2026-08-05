@@ -143,7 +143,7 @@ func resolvePlatform(ctx context.Context, p config.Platform, port int, resolver 
 		best := probe.Best(ctx, prober, ips, port)
 		e := render.Entry{IP: best.IP, Domain: dom, OK: best.OK}
 		if !best.OK && best.IP != "" {
-			// 探测失败（如 CI 出站受限）：仍用 DoH 首条 IP，标注降级。
+			// 探测失败（如 CI 出站受限）：仍用解析结果首条 IP，标注降级。
 			e.OK = true
 			e.Degraded = true
 		}
