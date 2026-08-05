@@ -36,8 +36,18 @@ func RenderReadme(tmpl, hosts string) string {
 
 // WriteAll 渲染并写出每个平台的 Hosts_<name> 文件，以及合并的 Hosts 文件。
 // readmeTmpl 非空时同时渲染出 README.md。所有写出均为原子写。
+// 两个平台消毒后映射到同一文件名时返回错误，避免静默覆盖。
 func WriteAll(results []Result, dir string, version int, readmeTmpl string) error {
 	hosts := combined(results, version)
+
+	seen := make(map[string]string, len(results)) // 输出文件名 -> 平台名
+	for _, r := range results {
+		fname := "Hosts_" + sanitizeFilename(r.Platform)
+		if prev, dup := seen[fname]; dup {
+			return fmt.Errorf("platform %q and %q collide on output file %s", prev, r.Platform, fname)
+		}
+		seen[fname] = r.Platform
+	}
 
 	for _, r := range results {
 		content := Render(r, version)

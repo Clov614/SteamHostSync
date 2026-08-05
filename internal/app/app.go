@@ -79,7 +79,6 @@ func gather(ctx context.Context, cfg *config.Config, resolver resolve.Resolver, 
 	platformOK := 0
 
 	for pi := range cfg.Platforms {
-		pi := pi
 		g.Go(func() error {
 			if gctx.Err() != nil {
 				return gctx.Err()
