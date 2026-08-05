@@ -14,30 +14,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
-          go-version: 1.18
+          go-version: '1.22'
+          cache: true
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Test
+        run: go test -race -coverprofile=coverage.out ./internal/...
+
+      - name: Coverage gate
+        run: |
+          go tool cover -func=coverage.out | grep '^total:' | \
+            awk '{gsub(/%/,"",$3); if ($3 + 0 < 80) {print "COVERAGE " $3 "% < 80%"; exit 1} else {print "COVERAGE OK " $3 "%"}}'
 
       - name: Build
-        run: CGO_ENABLED=0 go build -o update
+        run: CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o update .
 
-      - name: start
+      - name: Run
         run: |
-          chmod 773 update
+          chmod +x update
           ./update
 
       - name: Commit files
         run: |
           git config --local user.email zhenghongyi1225@foxmail.com
           git config --global user.name action_bot
-          git add .
-          git commit -m "Auto commit"
+          git add Hosts Hosts_* README.md config.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "[skip ci] auto update hosts"
+            git push
+          fi
         continue-on-error: true
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
