@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -16,8 +17,12 @@ type dohAnswer struct {
 
 // dohResponse 映射 DoH JSON API 的响应体。
 type dohResponse struct {
+	Status int         `json:"Status"` // 0=RCODE 0 (NOERROR), 3=NXDOMAIN, 2=SERVFAIL, 5=REFUSED
 	Answer []dohAnswer `json:"Answer"`
 }
+
+// maxDoHBody 限制 DoH 响应体大小，防止异常上游回传超大 JSON。
+const maxDoHBody = 1 << 20 // 1 MiB
 
 // dohQuery 针对单个 DoH 上游发起一次 A 记录查询，返回过滤后的 A 记录 IP 列表。
 // 过滤规则：仅保留 type==1 的 A 记录，其余（CNAME/AAAA 等）丢弃。
@@ -40,7 +45,7 @@ func dohQuery(ctx context.Context, client *http.Client, server, domain string) (
 	}
 
 	var body dohResponse
-	if err := json.NewDecoder(resp.Body).Decode(&body); err != nil {
+	if err := json.NewDecoder(io.LimitReader(resp.Body, maxDoHBody)).Decode(&body); err != nil {
 		return nil, fmt.Errorf("decode doh response from %s: %w", server, err)
 	}
 

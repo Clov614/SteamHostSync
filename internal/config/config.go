@@ -95,6 +95,12 @@ func Parse(data []byte) (*Config, error) {
 	return &cfg, nil
 }
 
+// 允许的取值上限：防止配置错误导致并发数失控。
+const (
+	maxConcurrency = 64
+	maxAttempts    = 10
+)
+
 // Validate 校验配置字段，确保配置可被安全使用。
 func (c *Config) Validate() error {
 	if c.Version != Version {
@@ -102,6 +108,9 @@ func (c *Config) Validate() error {
 	}
 	if c.Concurrency < 1 {
 		return fmt.Errorf("concurrency must be >= 1, got %d", c.Concurrency)
+	}
+	if c.Concurrency > maxConcurrency {
+		return fmt.Errorf("concurrency must be <= %d, got %d", maxConcurrency, c.Concurrency)
 	}
 	if c.Timeout.Resolve <= 0 {
 		return errors.New("timeout.resolve must be positive")
@@ -114,6 +123,9 @@ func (c *Config) Validate() error {
 	}
 	if c.Probe.Attempts < 1 {
 		return fmt.Errorf("probe.attempts must be >= 1, got %d", c.Probe.Attempts)
+	}
+	if c.Probe.Attempts > maxAttempts {
+		return fmt.Errorf("probe.attempts must be <= %d, got %d", maxAttempts, c.Probe.Attempts)
 	}
 	if len(c.DNSServers) == 0 {
 		return errors.New("dns_servers must not be empty")
@@ -142,6 +154,11 @@ func (c *Config) Validate() error {
 		seen[name] = struct{}{}
 		if len(p.Domains) == 0 {
 			return fmt.Errorf("platform %q has no domains", name)
+		}
+		for _, d := range p.Domains {
+			if strings.TrimSpace(d) == "" {
+				return fmt.Errorf("platform %q contains an empty domain", name)
+			}
 		}
 	}
 	return nil

@@ -187,3 +187,15 @@ func TestWriteAllAllFailStillWrites(t *testing.T) {
 		t.Errorf("expected commented failed domain:\n%s", data)
 	}
 }
+
+// TestWriteAllFilenameCollision 验证消毒后同名平台返回错误而非静默覆盖。
+func TestWriteAllFilenameCollision(t *testing.T) {
+	dir := t.TempDir()
+	results := []Result{
+		{Platform: "gog", At: fixedTime(), Entries: []Entry{{IP: "1.1.1.1", Domain: "gog.com", OK: true}}},
+		{Platform: "GOG", At: fixedTime(), Entries: []Entry{{IP: "2.2.2.2", Domain: "gog.com", OK: true}}},
+	}
+	if err := WriteAll(results, dir, 1, ""); err == nil {
+		t.Fatal("expected collision error for platforms 'gog' and 'GOG'")
+	}
+}

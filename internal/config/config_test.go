@@ -109,6 +109,21 @@ platforms:
 			want: "concurrency must be",
 		},
 		{
+			name: "concurrency too high",
+			data: strings.Replace(validBase, "concurrency: 8", "concurrency: 100", 1),
+			want: "concurrency must be <= 64",
+		},
+		{
+			name: "attempts too high",
+			data: strings.Replace(validBase, "attempts: 3", "attempts: 50", 1),
+			want: "probe.attempts must be <= 10",
+		},
+		{
+			name: "empty domain",
+			data: strings.Replace(validBase, "domains: [github.com]", "domains: [github.com, \"  \"]", 1),
+			want: "contains an empty domain",
+		},
+		{
 			name: "empty dns_servers",
 			data: `version: 1
 concurrency: 8

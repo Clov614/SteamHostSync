@@ -108,6 +108,30 @@ func TestBestEmpty(t *testing.T) {
 	}
 }
 
+// TestBestContextCancel 验证即使探测不尊重 ctx，Best 也能在取消时尽快返回。
+func TestBestContextCancel(t *testing.T) {
+	ctx, cancel := context.WithCancel(context.Background())
+	// 忽略 ctx 的拨号：永不返回，用于验证 Best 的 ctx.Done 分支。
+	d := func(context.Context, string, string) (net.Conn, error) {
+		select {}
+	}
+	p := NewTCPProber(d, 1, time.Second)
+
+	done := make(chan struct{})
+	go func() {
+		Best(ctx, p, []string{"1.2.3.4", "5.6.7.8"}, 443)
+		close(done)
+	}()
+
+	time.Sleep(100 * time.Millisecond)
+	cancel()
+	select {
+	case <-done:
+	case <-time.After(2 * time.Second):
+		t.Fatal("Best() did not return after ctx cancel")
+	}
+}
+
 // TestProberInterfaceSatisfied 编译期断言 TCPProber 实现 Prober。
 func TestProberInterfaceSatisfied(t *testing.T) {
 	var _ Prober = (*TCPProber)(nil)
