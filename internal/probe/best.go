@@ -13,8 +13,12 @@ type Result struct {
 	OK  bool
 }
 
+// maxConcurrentProbes 限制 Best 同时进行的 TCP 探测数量，
+// 防止被污染/恶意上游返回大量 A 记录时触发失控的并发连接。
+const maxConcurrentProbes = 16
+
 // Best 并发探测所有候选 IP，返回延迟最低者。
-// 全部失败时返回第一个 IP 且 OK=false，供上层降级（直接使用 DoH 首条记录）。
+// 全部失败时返回第一个 IP 且 OK=false，供上层降级（直接使用解析结果首条记录）。
 // ctx 取消时尽快返回（不等待探测完成）。
 func Best(ctx context.Context, p Prober, ips []string, port int) Result {
 	if len(ips) == 0 {
@@ -23,10 +27,13 @@ func Best(ctx context.Context, p Prober, ips []string, port int) Result {
 	best := Result{IP: ips[0], Lat: time.Duration(1<<63 - 1)}
 	var mu sync.Mutex
 	var wg sync.WaitGroup
+	sem := make(chan struct{}, maxConcurrentProbes)
 	for _, ip := range ips {
 		wg.Add(1)
 		go func(ip string) {
 			defer wg.Done()
+			sem <- struct{}{}
+			defer func() { <-sem }()
 			lat, err := p.Latency(ctx, ip, port)
 			if err != nil {
 				return

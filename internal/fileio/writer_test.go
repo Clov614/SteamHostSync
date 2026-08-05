@@ -56,14 +56,15 @@ func TestAtomicWriteMissingDir(t *testing.T) {
 	}
 }
 
-// TestAtomicWriteRenameFails 覆盖目标为不可替换对象时走删除→重试→报错的降级分支。
+// TestAtomicWriteRenameFails 覆盖目标为不可替换对象（非空目录）时
+// Rename 失败返回错误、原目标保留、临时文件被清理的路径。
 func TestAtomicWriteRenameFails(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "Hosts")
 	if err := os.Mkdir(path, 0755); err != nil {
 		t.Fatal(err)
 	}
-	// 放入文件使目录非空，令 os.Remove 与重试 Rename 均失败。
+	// 放入文件使目录非空，令 Rename 文件覆盖目录失败。
 	if err := os.WriteFile(filepath.Join(path, "keep.txt"), []byte("x"), 0644); err != nil {
 		t.Fatal(err)
 	}

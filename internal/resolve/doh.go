@@ -49,6 +49,13 @@ func dohQuery(ctx context.Context, client *http.Client, server, domain string) (
 		return nil, fmt.Errorf("decode doh response from %s: %w", server, err)
 	}
 
+	// RCODE 语义：0=NOERROR, 3=NXDOMAIN（域名真实不存在，合法空结果），
+	// 其余非零值（SERVFAIL=2/REFUSED=5 等）视为上游解析失败，
+	// 交由 multi.go 尝试其他上游并记录日志。
+	if body.Status != 0 && body.Status != 3 {
+		return nil, fmt.Errorf("doh %s for %s returned RCODE %d", server, domain, body.Status)
+	}
+
 	var out []string
 	for _, a := range body.Answer {
 		if a.Type == 1 && a.Data != "" {
