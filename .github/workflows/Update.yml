@@ -43,8 +43,8 @@ jobs:
 
       - name: Commit files
         run: |
-          git config --local user.email zhenghongyi1225@foxmail.com
-          git config --global user.name action_bot
+          git config --local user.email github-actions[bot]@users.noreply.github.com
+          git config --local user.name github-actions[bot]
           git add Hosts Hosts_* README.md config.yaml
           if git diff --cached --quiet; then
             echo "No changes to commit"
