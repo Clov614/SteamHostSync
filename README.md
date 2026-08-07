@@ -27,47 +27,47 @@ The complete guides are maintained in the language-specific documents above. The
 
 ```
 # SteamHostSync hosts v1
-# Generated: 2026-08-07T04:06:46Z
+# Generated: 2026-08-07T04:08:50Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # github Start
-140.82.114.26			alive.github.com
-140.82.113.26			live.github.com
-185.199.110.215			github.githubassets.com
+140.82.113.25			alive.github.com
+140.82.113.25			live.github.com
+185.199.108.215			github.githubassets.com
 140.82.113.22			central.github.com
 185.199.109.133			desktop.githubusercontent.com
 # assets-cdn.github.com
-185.199.108.133			camo.githubusercontent.com
-185.199.109.133			github.map.fastly.net
-151.101.193.194			github.global.ssl.fastly.net
-140.82.116.3			gist.github.com
-185.199.108.153			github.io
+185.199.111.133			camo.githubusercontent.com
+185.199.111.133			github.map.fastly.net
+151.101.129.194			github.global.ssl.fastly.net
+140.82.116.4			gist.github.com
+185.199.111.153			github.io
 140.82.116.4			github.com
 192.0.66.2			github.blog
 140.82.116.5			api.github.com
-185.199.110.133			raw.githubusercontent.com
+185.199.109.133			raw.githubusercontent.com
 185.199.111.133			user-images.githubusercontent.com
 185.199.111.133			favicons.githubusercontent.com
-185.199.111.133			avatars5.githubusercontent.com
-185.199.110.133			avatars4.githubusercontent.com
-185.199.110.133			avatars3.githubusercontent.com
+185.199.109.133			avatars5.githubusercontent.com
+185.199.108.133			avatars4.githubusercontent.com
+185.199.109.133			avatars3.githubusercontent.com
 185.199.109.133			avatars2.githubusercontent.com
-185.199.111.133			avatars1.githubusercontent.com
+185.199.110.133			avatars1.githubusercontent.com
 185.199.109.133			avatars0.githubusercontent.com
-185.199.108.133			avatars.githubusercontent.com
+185.199.110.133			avatars.githubusercontent.com
 140.82.116.10			codeload.github.com
-16.15.212.161			github-cloud.s3.amazonaws.com
-16.15.212.161			github-com.s3.amazonaws.com
-16.15.212.161			github-production-release-asset-2e65be.s3.amazonaws.com
-16.15.212.103			github-production-user-asset-6210df.s3.amazonaws.com
-16.15.212.112			github-production-repository-file-5c1aeb.s3.amazonaws.com
-185.199.108.153			githubstatus.com
+16.15.254.24			github-cloud.s3.amazonaws.com
+16.15.245.132			github-com.s3.amazonaws.com
+16.15.253.132			github-production-release-asset-2e65be.s3.amazonaws.com
+16.15.213.124			github-production-user-asset-6210df.s3.amazonaws.com
+16.15.191.81			github-production-repository-file-5c1aeb.s3.amazonaws.com
+185.199.110.153			githubstatus.com
 140.82.113.18			github.community
 20.99.227.183			github.dev
-185.199.110.133			media.githubusercontent.com
-# github End # Last Update Time : 2026-08-07T04:06:46Z
+185.199.111.133			media.githubusercontent.com
+# github End # Last Update Time : 2026-08-07T04:08:50Z
 # SteamHostSync hosts v1
-# Generated: 2026-08-07T04:06:46Z
+# Generated: 2026-08-07T04:08:50Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # steam Start
@@ -76,49 +76,61 @@ The complete guides are maintained in the language-specific documents above. The
 23.45.137.115			store.steampowered.com
 96.6.236.246			api.steampowered.com
 96.6.236.246			help.steampowered.com
-23.46.216.68			store.akamai.steamstatic.com
+23.214.95.201			store.akamai.steamstatic.com
 23.67.33.202			steamcdn-a.akamaihd.net
 23.214.95.201			cdn.akamai.steamstatic.com
 23.213.145.49			steam-chat.com
-23.46.216.70			community.akamai.steamstatic.com
-# steam End # Last Update Time : 2026-08-07T04:06:46Z
+23.214.95.200			community.akamai.steamstatic.com
+# steam End # Last Update Time : 2026-08-07T04:08:50Z
 # SteamHostSync hosts v1
-# Generated: 2026-08-07T04:06:46Z
+# Generated: 2026-08-07T04:08:50Z
+# Project: https://github.com/Clov614/SteamHostSync
+
+# steam_linux Start
+34.126.228.17			repo.steampowered.com
+23.214.95.201			media.steampowered.com
+23.212.62.92			client-update.akamai.steamstatic.com
+199.232.215.82			client-update.fastly.steamstatic.com
+96.16.55.136			cdn.cloudflare.steamstatic.com
+199.232.211.52			cdn.steamstatic.com
+# steam_linux End # Last Update Time : 2026-08-07T04:08:50Z
+# SteamHostSync hosts v1
+# Generated: 2026-08-07T04:08:50Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # docker Start
 23.185.0.4			docker.com
 104.18.43.187			hub.docker.com
-65.8.54.107			docs.docker.com
-172.64.144.74			login.docker.com
-100.61.215.205			registry.hub.docker.com
-54.164.218.169			docker.io
-100.51.0.233			registry-1.docker.io
-44.195.206.77			index.docker.io
-# docker End # Last Update Time : 2026-08-07T04:06:46Z
+65.8.54.82			docs.docker.com
+104.18.43.182			login.docker.com
+100.50.138.97			registry.hub.docker.com
+100.25.96.211			docker.io
+44.215.246.172			registry-1.docker.io
+35.168.108.241			index.docker.io
+# docker End # Last Update Time : 2026-08-07T04:08:50Z
 # SteamHostSync hosts v1
-# Generated: 2026-08-07T04:06:46Z
+# Generated: 2026-08-07T04:08:50Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # gog Start
 151.101.1.241			auth.gog.com
-151.101.129.241			www.gogalaxy.com
-151.101.65.241			remote-config.gog.com
-151.101.193.241			insights-collector.gog.com
-151.101.129.241			gameplay.gog.com
-151.101.65.241			gamesdb.gog.com
-151.101.193.241			external-accounts.gog.com
-151.101.129.241			www.gog.com
-# gog End # Last Update Time : 2026-08-07T04:06:46Z
+151.101.65.241			www.gogalaxy.com
+151.101.193.241			remote-config.gog.com
+151.101.129.241			insights-collector.gog.com
+151.101.1.241			gameplay.gog.com
+151.101.129.241			gamesdb.gog.com
+151.101.1.241			external-accounts.gog.com
+151.101.1.241			www.gog.com
+# gog End # Last Update Time : 2026-08-07T04:08:50Z
 # SteamHostSync hosts v1
-# Generated: 2026-08-07T04:06:46Z
+# Generated: 2026-08-07T04:08:50Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # ubisoft Start
 184.28.149.32			static3.cdn.Ubi.com
 23.37.17.207			static2.cdn.Ubi.com
 # static1.cdn.Ubi.com
-# ubisoft End # Last Update Time : 2026-08-07T04:06:46Z
+# ubisoft End # Last Update Time : 2026-08-07T04:08:50Z
 # Github: https://github.com/Clov614/SteamHostSync
 
 ```
