@@ -41,6 +41,84 @@ platforms:
 	}
 }
 
+// TestParseSteamLinuxPlatform 验证 steam_linux 平台（Issue #11）能正确解析，
+// 且与现有 steam 平台名称不冲突。
+func TestParseSteamLinuxPlatform(t *testing.T) {
+	data := []byte(`version: 1
+concurrency: 8
+timeout:
+  resolve: 5s
+  probe: 2s
+probe:
+  port: 443
+  attempts: 3
+dns_servers:
+  - https://dns.alidns.com/resolve
+platforms:
+  - name: steam
+    domains: [store.steampowered.com]
+  - name: steam_linux
+    domains:
+      - repo.steampowered.com
+      - media.steampowered.com
+      - client-update.akamai.steamstatic.com
+`)
+	cfg, err := Parse(data)
+	if err != nil {
+		t.Fatalf("Parse() error = %v", err)
+	}
+	var linux *Platform
+	for _, p := range cfg.Platforms {
+		if p.Name == "steam_linux" {
+			linux = &p
+			break
+		}
+	}
+	if linux == nil {
+		t.Fatalf("steam_linux platform missing, platforms = %+v", cfg.Platforms)
+	}
+	if len(linux.Domains) == 0 {
+		t.Fatal("steam_linux platform has no domains")
+	}
+	for _, d := range linux.Domains {
+		if strings.TrimSpace(d) == "" {
+			t.Errorf("steam_linux contains empty domain: %q", d)
+		}
+	}
+}
+
+// TestDefaultConfigContainsSteamLinux 确保内嵌默认配置包含 steamb_linux 平台及其核心域名。
+func TestDefaultConfigContainsSteamLinux(t *testing.T) {
+	cfg, err := Parse(Default())
+	if err != nil {
+		t.Fatalf("Parse(default) error = %v", err)
+	}
+	found := false
+	for _, p := range cfg.Platforms {
+		if p.Name != "steam_linux" {
+			continue
+		}
+		found = true
+		for _, want := range []string{"repo.steampowered.com", "media.steampowered.com", "client-update.akamai.steamstatic.com"} {
+			if !containsDomain(p.Domains, want) {
+				t.Errorf("steam_linux missing domain %q", want)
+			}
+		}
+	}
+	if !found {
+		t.Fatal("default config missing steam_linux platform")
+	}
+}
+
+func containsDomain(domains []string, want string) bool {
+	for _, d := range domains {
+		if strings.TrimSpace(d) == want {
+			return true
+		}
+	}
+	return false
+}
+
 func TestLoadCreatesDefaultWhenMissing(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, DefaultName)
