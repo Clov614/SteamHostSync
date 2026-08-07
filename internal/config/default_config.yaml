@@ -59,6 +59,14 @@ platforms:
       - cdn.akamai.steamstatic.com
       - steam-chat.com
       - community.akamai.steamstatic.com
+  - name: steam_linux
+    domains:
+      - repo.steampowered.com
+      - media.steampowered.com
+      - client-update.akamai.steamstatic.com
+      - client-update.fastly.steamstatic.com
+      - cdn.cloudflare.steamstatic.com
+      - cdn.steamstatic.com
   - name: docker
     domains:
       - docker.com

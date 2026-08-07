@@ -37,6 +37,7 @@ The repo publishes multiple host lists so you can subscribe to only what you nee
 
 - `Hosts` for the full bundle
 - `Hosts_steam` for Steam only
+- `Hosts_steam_linux` for Linux Steam only (apt repo + client update domains)
 - `Hosts_github` for GitHub only
 - `Hosts_docker` for Docker-related domains
 - `Hosts_gog` for GOG services
@@ -54,13 +55,15 @@ Available subscription URLs:
 
 1. ALL: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
 2. Steam: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`
-3. GitHub: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
+3. Linux Steam: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam_linux`
+4. GitHub: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 **Fallback (Statically)**
 
-4. ALL: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
-5. Steam: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
-6. GitHub: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
+5. ALL: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
+6. Steam: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
+7. Linux Steam: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam_linux`
+8. GitHub: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 If the primary CDN is unreachable, switch to the matching fallback URL.
 
