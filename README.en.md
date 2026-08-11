@@ -18,6 +18,7 @@ It is aimed at users who want to keep an organized, updatable hosts configuratio
 - [Manual Setup](#manual-setup)
 - [Refresh DNS](#refresh-dns)
 - [Customize config.yaml](#customize-configyaml)
+- [Fork Customization (making your fork self-updating)](#fork-customization-making-your-fork-self-updating)
 - [Build From Source](#build-from-source)
 - [Repository Layout](#repository-layout)
 
@@ -143,6 +144,55 @@ Notes:
 - Platform names are lowercased into safe filenames (illegal characters are replaced with `_`); lowercase names without spaces are recommended.
 - Domains that fail to resolve are kept as `# domain` comment lines and do not affect the other entries.
 - If `config.yaml` does not exist, the embedded default configuration is written automatically on the first run.
+
+## Fork Customization (making your fork self-updating)
+
+> The following is for users who fork this repo to serve as their own hosts source, not for developer collaboration.
+
+After forking, the built-in CI (`.github/workflows/Update.yml`) does not run automatically. Configure it once as below, and it will refresh your hosts files every 12 hours from then on:
+
+### 1. Enable Actions
+
+The `schedule` trigger on a fork is **disabled by default**, so enable it manually:
+
+1. Open your fork and click the **Actions** tab.
+2. The first time you will be prompted to enable Actions — click **I understand my workflows, go ahead and enable them**.
+3. If the `Update` workflow shows as disabled in the sidebar, open its "…" menu and choose **Enable workflow** (this also runs it once and resets the timer).
+
+> ⚠️ **It will be disabled again after 60 days of inactivity**: GitHub automatically disables scheduled workflows in public repositories that have had no activity for 60 consecutive days. As long as your fork receives pushes (or you trigger runs manually), it stays alive; if it does get disabled, just repeat the steps above.
+
+### 2. Grant the GITHUB_TOKEN write access (critical)
+
+`Update.yml` `git push`es the generated hosts files back to your `main` branch, which requires the repo's default `GITHUB_TOKEN` to have write access. New repositories default to read-only, otherwise CI fails with `Permission denied` on push.
+
+1. Open **Settings → Actions → General**.
+2. Under **Workflow permissions**, select **Read and write permissions** and save.
+
+### 3. Customize the platforms and domains (optional)
+
+Edit the root `config.yaml` (`platforms` / `dns_servers` / `concurrency` / `timeout` / `probe`); field descriptions are in the previous section. Each CI run commits this file as well, so your customization is preserved in git history.
+
+> Note: do not manually commit the CI-generated `Hosts*` and `README.md` files — the workflow maintains them. If you also build locally, remember to mirror the same config into `internal/config/default_config.yaml` (see `CLAUDE.md`).
+
+### 4. Update your subscription URLs (if you use SwitchHosts)
+
+Replace `Clov614` with your own GitHub username in every CDN link in the README:
+
+```
+https://cdn.jsdelivr.net/gh/<your-username>/SteamHostSync@main/Hosts
+```
+
+> Note: jsDelivr / Statically only serve content from public repositories, so keep your fork public; otherwise the subscription URLs will not be accessible.
+
+### 5. (Optional) Publish a release
+
+Without a `v*` tag, `release.yml` (goreleaser) never triggers and no configuration is needed. To publish your own release, just push a `v*` tag; the workflow publishes automatically using `GITHUB_TOKEN`, no extra secrets required.
+
+### Summary of triggers
+
+- Scheduled: every 12 hours (requires step 1)
+- `push` to `main`
+- Manual: Actions tab → `Update` → **Run workflow**
 
 ## Build From Source
 
