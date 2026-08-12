@@ -38,6 +38,7 @@ SteamHostSync 是一个小型 Go 工具兼现成的 hosts 源，用于同步 Ste
 
 - `Hosts` —— 全部平台的合集
 - `Hosts_steam` —— 仅 Steam
+- `Hosts_steam_linux` —— 仅 Linux Steam（安装/更新所需仓库与客户端域名）
 - `Hosts_github` —— 仅 GitHub
 - `Hosts_docker` —— Docker 相关域名
 - `Hosts_gog` —— GOG 服务
@@ -55,13 +56,15 @@ SteamHostSync 是一个小型 Go 工具兼现成的 hosts 源，用于同步 Ste
 
 1. ALL：`https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
 2. Steam：`https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`
-3. GitHub：`https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
+3. Linux Steam：`https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam_linux`
+4. GitHub：`https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 **备用源（Statically）**
 
-4. ALL：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
-5. Steam：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
-6. GitHub：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
+5. ALL：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts`
+6. Steam：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam`
+7. Linux Steam：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_steam_linux`
+8. GitHub：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 若主源不可访问，请切换到对应的备用源。
 

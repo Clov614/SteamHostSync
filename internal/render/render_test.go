@@ -188,6 +188,55 @@ func TestWriteAllAllFailStillWrites(t *testing.T) {
 	}
 }
 
+// TestWriteAllSteamLinuxIsolated (Issue #11) 验证 Linux Steam 作为独立平台：
+// 产出独立的 Hosts_steam_linux 文件，与 Hosts_steam 不冲突，并进入合并 Hosts。
+func TestWriteAllSteamLinuxIsolated(t *testing.T) {
+	dir := t.TempDir()
+	results := []Result{
+		{
+			Platform: "steam",
+			At:       fixedTime(),
+			Entries:  []Entry{{IP: "1.2.3.4", Domain: "store.steampowered.com", OK: true}},
+		},
+		{
+			Platform: "steam_linux",
+			At:       fixedTime(),
+			Entries:  []Entry{{IP: "2.3.4.5", Domain: "repo.steampowered.com", OK: true}},
+		},
+	}
+
+	if err := WriteAll(results, dir, 1, ""); err != nil {
+		t.Fatalf("WriteAll() error = %v", err)
+	}
+
+	// 两个平台应各自落盘且不互相覆盖。
+	steamData, err := os.ReadFile(filepath.Join(dir, "Hosts_steam"))
+	if err != nil {
+		t.Fatalf("read Hosts_steam: %v", err)
+	}
+	if !strings.Contains(string(steamData), "store.steampowered.com") {
+		t.Errorf("Hosts_steam should keep its own domain:\n%s", steamData)
+	}
+
+	linuxData, err := os.ReadFile(filepath.Join(dir, "Hosts_steam_linux"))
+	if err != nil {
+		t.Fatalf("read Hosts_steam_linux: %v", err)
+	}
+	if !strings.Contains(string(linuxData), "repo.steampowered.com") {
+		t.Errorf("Hosts_steam_linux should hold steam_linux domain:\n%s", linuxData)
+	}
+
+	// 合并文件需同时包含两个平台标记。
+	combined, err := os.ReadFile(filepath.Join(dir, "Hosts"))
+	if err != nil {
+		t.Fatalf("read Hosts: %v", err)
+	}
+	cs := string(combined)
+	if !strings.Contains(cs, "# steam Start") || !strings.Contains(cs, "# steam_linux Start") {
+		t.Errorf("combined Hosts should contain both platforms:\n%s", cs)
+	}
+}
+
 // TestWriteAllFilenameCollision 验证消毒后同名平台返回错误而非静默覆盖。
 func TestWriteAllFilenameCollision(t *testing.T) {
 	dir := t.TempDir()
