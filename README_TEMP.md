@@ -23,6 +23,8 @@ The complete guides are maintained in the language-specific documents above. The
 
 上面的语言文档包含完整使用说明。下面的 hosts 预览由 CI 根据此模板自动生成，请勿直接编辑生成的 `README.md`。
 
+Forked this repo to make your own hosts source? See the fork customization guide in the docs above / Fork 后想用仓库自带 CI 自动更新 hosts？请参阅上方语言文档中的「Fork 客制化」小节。
+
 ## Current hosts / 当前 hosts
 
 ```
