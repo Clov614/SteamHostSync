@@ -1,7 +1,8 @@
 #!/bin/sh
 
 TEST_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
-REPO_ROOT=$(CDPATH= cd -- "$TEST_DIR/../../.." && pwd)
+REPO_ROOT=$(CDPATH='' cd -- "$TEST_DIR/../../.." && pwd)
+# shellcheck source=contrib/openwrt/tests/testlib.sh
 . "$TEST_DIR/testlib.sh"
 
 CTL_SCRIPT="$REPO_ROOT/contrib/openwrt/files/usr/sbin/steamhostsyncctl"
