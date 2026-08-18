@@ -130,12 +130,21 @@ capture_original_state() {
         1) ;;
         *) ORIGINAL_ENABLED=0 ;;
     esac
-    [ -e "$INIT_RC_DIR"/S??steamhostsync ] && ORIGINAL_INIT_ENABLED=1 || ORIGINAL_INIT_ENABLED=0
+    ORIGINAL_INIT_ENABLED=0
+    for init_entry in "$INIT_RC_DIR"/S??steamhostsync; do
+        [ -e "$init_entry" ] || continue
+        ORIGINAL_INIT_ENABLED=1
+        break
+    done
 }
 
 rollback_setup() {
-    [ "$CRON_CHANGED" = "1" ] && remove_cron || true
-    [ "$DNSMASQ_CHANGED" = "1" ] && remove_dnsmasq_entry || true
+    if [ "$CRON_CHANGED" = "1" ]; then
+        remove_cron || true
+    fi
+    if [ "$DNSMASQ_CHANGED" = "1" ]; then
+        remove_dnsmasq_entry || true
+    fi
     "$UCI_BIN" set "steamhostsync.main.enabled=$ORIGINAL_ENABLED" >/dev/null 2>&1 || true
     "$UCI_BIN" commit steamhostsync >/dev/null 2>&1 || true
     if [ "$ORIGINAL_INIT_ENABLED" = "1" ]; then
