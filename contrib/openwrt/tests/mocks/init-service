@@ -1,0 +1,3 @@
+#!/bin/sh
+
+printf '%s\n' "${1:-}" >>"$MOCK_INIT_CALLS"

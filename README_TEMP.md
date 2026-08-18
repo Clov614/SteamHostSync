@@ -13,6 +13,7 @@ SteamHostSync 为 Steam、GitHub、Docker、GOG、Ubisoft 等服务生成可更�
 ## Quick links / 快速链接
 
 - [中文文档](README.zh-CN.md) · [English docs](README.en.md)
+- OpenWrt: [中文指南](docs/openwrt.zh-CN.md) · [English guide](docs/openwrt.en.md)
 - SwitchHosts 订阅地址 / subscription files:
   - All: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts`
   - Steam: `https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts_steam`

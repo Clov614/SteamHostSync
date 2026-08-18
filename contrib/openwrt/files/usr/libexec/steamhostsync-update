@@ -1,0 +1,267 @@
+#!/bin/sh
+
+set -u
+set -f
+
+UCI_BIN=${STEAMHOSTSYNC_UCI_BIN:-/sbin/uci}
+FETCH_BIN=${STEAMHOSTSYNC_FETCH_BIN:-/usr/bin/uclient-fetch}
+DNSMASQ_BIN=${STEAMHOSTSYNC_DNSMASQ_BIN:-/etc/init.d/dnsmasq}
+STATE_DIR=${STEAMHOSTSYNC_STATE_DIR:-/var/lib/steamhostsync}
+LOCK_DIR=${STEAMHOSTSYNC_LOCK_DIR:-/var/lock/steamhostsync.lock}
+CURRENT_FILE="$STATE_DIR/Hosts"
+PREVIOUS_FILE="$STATE_DIR/Hosts.previous"
+DOWNLOAD_FILE="$STATE_DIR/.Hosts.download.$$"
+CONSENSUS_FILE="$STATE_DIR/.Hosts.consensus.$$"
+LOCAL_OUTPUT_DIR="$STATE_DIR/.local-output.$$"
+
+uci_get() {
+    "$UCI_BIN" -q get "steamhostsync.main.$1" 2>/dev/null || true
+}
+
+config_value() {
+    name=$1
+    override=$2
+    default=$3
+    if [ -n "$override" ]; then
+        printf '%s\n' "$override"
+        return
+    fi
+    value=$(uci_get "$name")
+    [ -n "$value" ] && printf '%s\n' "$value" || printf '%s\n' "$default"
+}
+
+SOURCE=$(config_value source "${STEAMHOSTSYNC_SOURCE:-}" remote)
+PRIMARY_URL=$(config_value url "${STEAMHOSTSYNC_PRIMARY_URL:-}" "https://cdn.jsdelivr.net/gh/Clov614/SteamHostSync@main/Hosts")
+FALLBACK_URL=$(config_value fallback_url "${STEAMHOSTSYNC_FALLBACK_URL:-}" "https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts")
+ALLOWLIST=${STEAMHOSTSYNC_ALLOWLIST:-$(uci_get allowlist)}
+[ -n "$ALLOWLIST" ] || ALLOWLIST=/etc/steamhostsync/allowed-domains
+STRICT_DOMAINS=$(config_value strict_domains "${STEAMHOSTSYNC_STRICT_DOMAINS:-}" 1)
+MAX_BYTES=$(config_value max_bytes "${STEAMHOSTSYNC_MAX_BYTES:-}" 2097152)
+REQUIRE_CONSENSUS=$(config_value require_consensus "${STEAMHOSTSYNC_REQUIRE_CONSENSUS:-}" 1)
+LOCAL_BINARY=$(config_value local_binary "${STEAMHOSTSYNC_LOCAL_BINARY:-}" /usr/bin/steamhostsync)
+LOCAL_CONFIG=$(config_value local_config "${STEAMHOSTSYNC_LOCAL_CONFIG:-}" /etc/steamhostsync/router-config.yaml)
+
+log_message() {
+    if command -v logger >/dev/null 2>&1; then
+        logger -t steamhostsync "$*"
+    fi
+}
+
+cleanup() {
+    rm -f "$DOWNLOAD_FILE" "$CONSENSUS_FILE"
+    rm -rf "$LOCAL_OUTPUT_DIR"
+    rm -f "$LOCK_DIR/pid" "$LOCK_DIR/start"
+    rmdir "$LOCK_DIR" 2>/dev/null || true
+}
+
+fail() {
+    log_message "error: $*"
+    printf 'steamhostsync: %s\n' "$*" >&2
+    return 1
+}
+
+valid_number() {
+    case "$1" in
+        ''|*[!0-9]*) return 1 ;;
+        *) return 0 ;;
+    esac
+}
+
+process_start() {
+    pid=$1
+    [ -r "/proc/$pid/stat" ] || return 1
+    awk '{ print $22 }' "/proc/$pid/stat" 2>/dev/null
+}
+
+write_lock_owner() {
+    printf '%s\n' "$$" >"$LOCK_DIR/pid" || return 1
+    process_start "$$" >"$LOCK_DIR/start" 2>/dev/null || : >"$LOCK_DIR/start"
+}
+
+acquire_lock() {
+    case "$LOCK_DIR" in
+        ''|/|/var|/var/lock|/tmp) return 1 ;;
+    esac
+    if mkdir "$LOCK_DIR" 2>/dev/null; then
+        write_lock_owner || return 1
+        trap cleanup 0 INT TERM
+        return 0
+    fi
+
+    pid=$(cat "$LOCK_DIR/pid" 2>/dev/null || true)
+    lock_start=$(cat "$LOCK_DIR/start" 2>/dev/null || true)
+    if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+        current_start=$(process_start "$pid" || true)
+        if [ -z "$lock_start" ] || [ "$lock_start" = "$current_start" ]; then
+            return 75
+        fi
+    fi
+
+    rm -f "$LOCK_DIR/pid" "$LOCK_DIR/start"
+    rmdir "$LOCK_DIR" 2>/dev/null || return 75
+    if mkdir "$LOCK_DIR" 2>/dev/null; then
+        write_lock_owner || return 1
+        trap cleanup 0 INT TERM
+        return 0
+    fi
+    return 75
+}
+
+validate_hosts() {
+    file=$1
+    valid_number "$MAX_BYTES" || return 1
+    [ -s "$file" ] || return 1
+    [ "$(wc -c <"$file")" -le "$MAX_BYTES" ] || return 1
+    grep -Eq '^# SteamHostSync hosts v[0-9]+' "$file" || return 1
+    if [ "$STRICT_DOMAINS" = "1" ]; then
+        [ -f "$ALLOWLIST" ] || return 1
+    fi
+
+    awk -v allowlist="$ALLOWLIST" -v strict="$STRICT_DOMAINS" '
+        BEGIN {
+            records = 0
+            if (strict == "1") {
+                while ((getline line < allowlist) > 0) {
+                    sub(/\r$/, "", line)
+                    if (line != "") allowed[tolower(line)] = 1
+                }
+                close(allowlist)
+            }
+        }
+        {
+            sub(/\r$/, "")
+            if ($0 ~ /^[[:space:]]*$/ || $0 ~ /^[[:space:]]*#/) next
+            if (NF != 2) exit 1
+
+            ip = $1
+            domain = $2
+            count = split(ip, octet, ".")
+            if (count != 4) exit 1
+            for (i = 1; i <= 4; i++) {
+                if (octet[i] !~ /^[0-9]+$/ || octet[i] < 0 || octet[i] > 255) exit 1
+            }
+            if (octet[1] == 0 || octet[1] == 10 || octet[1] == 127 || octet[1] >= 224) exit 1
+            if (octet[1] == 100 && octet[2] >= 64 && octet[2] <= 127) exit 1
+            if (octet[1] == 169 && octet[2] == 254) exit 1
+            if (octet[1] == 172 && octet[2] >= 16 && octet[2] <= 31) exit 1
+            if (octet[1] == 192 && octet[2] == 168) exit 1
+            if (octet[1] == 192 && octet[2] == 0 && octet[3] == 0) exit 1
+            if (octet[1] == 198 && (octet[2] == 18 || octet[2] == 19)) exit 1
+            if (octet[1] == 198 && octet[2] == 51 && octet[3] == 100) exit 1
+            if (octet[1] == 203 && octet[2] == 0 && octet[3] == 113) exit 1
+
+            if (domain !~ /^[A-Za-z0-9]([A-Za-z0-9.-]*[A-Za-z0-9])?$/) exit 1
+            if (domain ~ /\.\./) exit 1
+            if (strict == "1" && !(tolower(domain) in allowed)) exit 1
+            records++
+        }
+        END { if (records == 0) exit 1 }
+    ' "$file"
+}
+
+fetch_remote() {
+    url=$1
+    destination=$2
+    [ -n "$url" ] || return 1
+    case "$url" in
+        https://*) ;;
+        *) return 1 ;;
+    esac
+    limit_bytes=$((MAX_BYTES + 1))
+    "$FETCH_BIN" -q -T 30 -O - "$url" 2>/dev/null |
+        head -c "$limit_bytes" >"$destination" || return 1
+    validate_hosts "$destination"
+}
+
+generate_local() {
+    [ -x "$LOCAL_BINARY" ] || return 1
+    [ -f "$LOCAL_CONFIG" ] || return 1
+    mkdir -p "$LOCAL_OUTPUT_DIR" || return 1
+    "$LOCAL_BINARY" -config "$LOCAL_CONFIG" -out "$LOCAL_OUTPUT_DIR" -readme "" || return 1
+    [ -f "$LOCAL_OUTPUT_DIR/Hosts" ] || return 1
+    cp "$LOCAL_OUTPUT_DIR/Hosts" "$DOWNLOAD_FILE" || return 1
+    validate_hosts "$DOWNLOAD_FILE"
+}
+
+publish() {
+    [ -f "$DOWNLOAD_FILE" ] || return 1
+    if [ -f "$CURRENT_FILE" ] && cmp -s "$DOWNLOAD_FILE" "$CURRENT_FILE"; then
+        return 0
+    fi
+
+    if [ -f "$CURRENT_FILE" ]; then
+        cp "$CURRENT_FILE" "$STATE_DIR/.Hosts.previous.$$" || return 1
+        mv "$STATE_DIR/.Hosts.previous.$$" "$PREVIOUS_FILE" || return 1
+    fi
+    mv "$DOWNLOAD_FILE" "$CURRENT_FILE" || return 1
+
+    if "$DNSMASQ_BIN" reload >/dev/null 2>&1; then
+        return 0
+    fi
+
+    if [ -f "$PREVIOUS_FILE" ]; then
+        mv "$CURRENT_FILE" "$STATE_DIR/.Hosts.failed.$$" || true
+        mv "$PREVIOUS_FILE" "$CURRENT_FILE" || true
+        if "$DNSMASQ_BIN" reload >/dev/null 2>&1; then
+            rm -f "$STATE_DIR/.Hosts.failed.$$"
+            return 1
+        fi
+        mv "$CURRENT_FILE" "$PREVIOUS_FILE" 2>/dev/null || true
+        mv "$STATE_DIR/.Hosts.failed.$$" "$CURRENT_FILE" 2>/dev/null || true
+    else
+        rm -f "$CURRENT_FILE"
+    fi
+    return 1
+}
+
+rollback() {
+    [ -f "$PREVIOUS_FILE" ] || return 1
+    mv "$CURRENT_FILE" "$STATE_DIR/.Hosts.rollback.$$" 2>/dev/null || true
+    mv "$PREVIOUS_FILE" "$CURRENT_FILE" || return 1
+    if "$DNSMASQ_BIN" reload >/dev/null 2>&1; then
+        mv "$STATE_DIR/.Hosts.rollback.$$" "$PREVIOUS_FILE" 2>/dev/null || true
+        return 0
+    fi
+    mv "$CURRENT_FILE" "$PREVIOUS_FILE" 2>/dev/null || true
+    mv "$STATE_DIR/.Hosts.rollback.$$" "$CURRENT_FILE" 2>/dev/null || true
+    "$DNSMASQ_BIN" reload >/dev/null 2>&1 || true
+    return 1
+}
+
+main() {
+    mkdir -p "$STATE_DIR" || return 1
+    if [ "${1:-update}" = "rollback" ]; then
+        acquire_lock || return $?
+        rollback
+        return $?
+    fi
+    acquire_lock || return $?
+    valid_number "$MAX_BYTES" || return 1
+    case "$REQUIRE_CONSENSUS" in
+        0|1) ;;
+        *) return 1 ;;
+    esac
+
+    case "$SOURCE" in
+        remote)
+            if [ "$REQUIRE_CONSENSUS" = "1" ]; then
+                [ -n "$FALLBACK_URL" ] || return 1
+                fetch_remote "$PRIMARY_URL" "$DOWNLOAD_FILE" || return 1
+                fetch_remote "$FALLBACK_URL" "$CONSENSUS_FILE" || return 1
+                cmp -s "$DOWNLOAD_FILE" "$CONSENSUS_FILE" || return 1
+            elif ! fetch_remote "$PRIMARY_URL" "$DOWNLOAD_FILE"; then
+                [ -n "$FALLBACK_URL" ] && fetch_remote "$FALLBACK_URL" "$DOWNLOAD_FILE" || return 1
+            fi
+            ;;
+        local)
+            generate_local || return 1
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+
+    publish
+}
+
+main "$@"

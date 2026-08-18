@@ -15,6 +15,7 @@ It is aimed at users who want to keep an organized, updatable hosts configuratio
 - [Why This Repo Exists](#why-this-repo-exists)
 - [What It Generates](#what-it-generates)
 - [Quick Start](#quick-start)
+- [Automatic updates on OpenWrt](#option-2-automatic-updates-on-openwrt)
 - [Manual Setup](#manual-setup)
 - [Refresh DNS](#refresh-dns)
 - [Customize config.yaml](#customize-configyaml)
@@ -66,6 +67,15 @@ Available subscription URLs:
 8. GitHub: `https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 If the primary CDN is unreachable, switch to the matching fallback URL.
+
+### Option 2: Automatic updates on OpenWrt
+
+OpenWrt users can install the architecture-neutral updater package and let dnsmasq load fresh hosts every 12 hours without modifying `/etc/hosts`:
+
+- Mode A (default) subscribes to generated `Hosts*` files and uses no resident process.
+- Mode B (optional) generates hosts on the router; releases include MIPS/MIPSLE softfloat archives containing the router binaries.
+
+See the [OpenWrt guide](docs/openwrt.en.md) for installation, configuration, rollback, and security details. Routers using AdGuardHome can alternatively subscribe to an existing `Hosts` URL directly.
 
 ### Optional: Auto-start SwitchHosts on Windows
 

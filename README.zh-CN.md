@@ -15,6 +15,7 @@ SteamHostSync 是一个小型 Go 工具兼现成的 hosts 源，用于同步 Ste
 - [为什么有这个项目](#为什么有这个项目)
 - [生成的内容](#生成的内容)
 - [快速开始](#快速开始)
+- [OpenWrt 路由器自动更新](#方式二openwrt-路由器自动更新)
 - [手动配置](#手动配置)
 - [刷新 DNS](#刷新-dns)
 - [自定义 config.yaml](#自定义-configyaml)
@@ -66,6 +67,15 @@ SteamHostSync 是一个小型 Go 工具兼现成的 hosts 源，用于同步 Ste
 8. GitHub：`https://cdn.statically.io/gh/Clov614/SteamHostSync@main/Hosts_github`
 
 若主源不可访问，请切换到对应的备用源。
+
+### 方式二：OpenWrt 路由器自动更新
+
+OpenWrt 用户可以安装架构无关的更新包，让 dnsmasq 每 12 小时加载最新 hosts，而不修改系统 `/etc/hosts`：
+
+- A 模式（默认）：直接订阅仓库生成的 `Hosts*`，无常驻进程、资源占用最低。
+- B 模式（可选）：在路由器本地运行 SteamHostSync；Release 额外提供包含 MIPS/MIPSLE softfloat 二进制的归档。
+
+安装、配置、回滚和安全说明见 [OpenWrt 使用指南](docs/openwrt.zh-CN.md)。使用 AdGuardHome 的路由器也可以直接订阅现有 `Hosts` URL。
 
 ### 可选：让 SwitchHosts 在 Windows 开机自启
 

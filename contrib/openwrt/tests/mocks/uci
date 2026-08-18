@@ -1,0 +1,35 @@
+#!/bin/sh
+
+state=${MOCK_UCI_STATE:?}
+command=${1:-}
+key=${2:-}
+
+case "$command" in
+    -q)
+        shift
+        exec "$0" "$@"
+        ;;
+    get)
+        case "$key" in
+            dhcp.*.addnhosts)
+                [ -f "$state" ] && tr '\n' ' ' <"$state"
+                ;;
+            *) exit 1 ;;
+        esac
+        ;;
+    add_list)
+        value=${key#*=}
+        touch "$state"
+        grep -Fx "$value" "$state" >/dev/null 2>&1 || printf '%s\n' "$value" >>"$state"
+        ;;
+    del_list)
+        value=${key#*=}
+        [ -f "$state" ] || exit 0
+        temp="$state.tmp"
+        grep -Fxv "$value" "$state" >"$temp" || true
+        mv "$temp" "$state"
+        ;;
+    set) exit 0 ;;
+    commit) exit 0 ;;
+    *) exit 2 ;;
+esac

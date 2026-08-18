@@ -4,8 +4,8 @@ on:
   push:
     tags-ignore:
       - "v*"
-    branches-ignore:
-      - "dev"
+    branches:
+      - "main"
   schedule:
     - cron: '0 */12 * * *'
 

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+out=
+while [ "$#" -gt 0 ]; do
+    arg=$1
+    printf '%s\n' "$arg" >>"$MOCK_GENERATOR_ARGS"
+    case "$arg" in
+        -out)
+            shift
+            out=${1:-}
+            printf '%s\n' "$out" >>"$MOCK_GENERATOR_ARGS"
+            ;;
+    esac
+    shift
+done
+
+[ -n "$out" ] || exit 2
+mkdir -p "$out"
+cp "$MOCK_GENERATOR_FILE" "$out/Hosts"

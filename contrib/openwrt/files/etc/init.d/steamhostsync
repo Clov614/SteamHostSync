@@ -1,0 +1,19 @@
+#!/bin/sh /etc/rc.common
+
+START=18
+
+start() {
+    enabled=$(/sbin/uci -q get steamhostsync.main.enabled 2>/dev/null || true)
+    [ "$enabled" = "1" ] || return 0
+    state_dir=${STEAMHOSTSYNC_STATE_DIR:-/var/lib/steamhostsync}
+    mkdir -p "$state_dir" || return 1
+    [ -f "$state_dir/Hosts" ] || : >"$state_dir/Hosts"
+    (
+        sleep 30
+        /usr/sbin/steamhostsyncctl update >/dev/null 2>&1
+    ) &
+}
+
+stop() {
+    :
+}
