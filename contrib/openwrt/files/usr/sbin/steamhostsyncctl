@@ -1,0 +1,279 @@
+#!/bin/sh
+
+set -u
+
+UCI_BIN=${STEAMHOSTSYNC_UCI_BIN:-/sbin/uci}
+DNSMASQ_BIN=${STEAMHOSTSYNC_DNSMASQ_BIN:-/etc/init.d/dnsmasq}
+INIT_BIN=${STEAMHOSTSYNC_INIT_BIN:-/etc/init.d/steamhostsync}
+CRON_BIN=${STEAMHOSTSYNC_CRON_BIN:-/etc/init.d/cron}
+UPDATE_BIN=${STEAMHOSTSYNC_UPDATE_BIN:-/usr/libexec/steamhostsync-update}
+STATE_DIR=${STEAMHOSTSYNC_STATE_DIR:-/var/lib/steamhostsync}
+CURRENT_FILE="$STATE_DIR/Hosts"
+CRONTAB=${STEAMHOSTSYNC_CRONTAB:-/etc/crontabs/root}
+CONTROL_LOCK_DIR=${STEAMHOSTSYNC_CONTROL_LOCK_DIR:-/var/lock/steamhostsync.lock}
+INIT_RC_DIR=${STEAMHOSTSYNC_INIT_RC_DIR:-/etc/rc.d}
+DNSMASQ_SECTION=${STEAMHOSTSYNC_DNSMASQ_SECTION:-dhcp.@dnsmasq[0]}
+CRON_CHANGED=0
+DNSMASQ_CHANGED=0
+ORIGINAL_ENABLED=
+ORIGINAL_INIT_ENABLED=0
+
+process_start() {
+    pid=$1
+    [ -r "/proc/$pid/stat" ] || return 1
+    awk '{ print $22 }' "/proc/$pid/stat" 2>/dev/null
+}
+
+write_control_lock_owner() {
+    printf '%s\n' "$$" >"$CONTROL_LOCK_DIR/pid" || return 1
+    process_start "$$" >"$CONTROL_LOCK_DIR/start" 2>/dev/null || : >"$CONTROL_LOCK_DIR/start"
+}
+
+acquire_control_lock() {
+    if mkdir "$CONTROL_LOCK_DIR" 2>/dev/null; then
+        write_control_lock_owner || return 1
+        return 0
+    fi
+    pid=$(cat "$CONTROL_LOCK_DIR/pid" 2>/dev/null || true)
+    lock_start=$(cat "$CONTROL_LOCK_DIR/start" 2>/dev/null || true)
+    if [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null; then
+        current_start=$(process_start "$pid" || true)
+        if [ -z "$lock_start" ] || [ "$lock_start" = "$current_start" ]; then
+            return 75
+        fi
+    fi
+    rm -f "$CONTROL_LOCK_DIR/pid" "$CONTROL_LOCK_DIR/start"
+    rmdir "$CONTROL_LOCK_DIR" 2>/dev/null || return 75
+    mkdir "$CONTROL_LOCK_DIR" 2>/dev/null || return 75
+    write_control_lock_owner || return 1
+}
+
+release_control_lock() {
+    rm -f "$CONTROL_LOCK_DIR/pid" "$CONTROL_LOCK_DIR/start"
+    rmdir "$CONTROL_LOCK_DIR" 2>/dev/null || true
+}
+
+uci_get() {
+    "$UCI_BIN" -q get "steamhostsync.main.$1" 2>/dev/null || true
+}
+
+has_addnhosts() {
+    values=$("$UCI_BIN" -q get "$DNSMASQ_SECTION.addnhosts" 2>/dev/null || true)
+    for value in $values; do
+        [ "$value" = "$CURRENT_FILE" ] && return 0
+    done
+    return 1
+}
+
+setup_dnsmasq() {
+    mkdir -p "$STATE_DIR" || return 1
+    [ -f "$CURRENT_FILE" ] || : >"$CURRENT_FILE"
+    if ! has_addnhosts; then
+        "$UCI_BIN" add_list "$DNSMASQ_SECTION.addnhosts=$CURRENT_FILE" || return 1
+        "$UCI_BIN" commit dhcp || return 1
+        if ! "$DNSMASQ_BIN" reload >/dev/null 2>&1; then
+            "$UCI_BIN" del_list "$DNSMASQ_SECTION.addnhosts=$CURRENT_FILE" || true
+            "$UCI_BIN" commit dhcp || true
+            return 1
+        fi
+        DNSMASQ_CHANGED=1
+    fi
+}
+
+remove_dnsmasq_entry() {
+    if has_addnhosts; then
+        "$UCI_BIN" del_list "$DNSMASQ_SECTION.addnhosts=$CURRENT_FILE" || return 1
+        "$UCI_BIN" commit dhcp || return 1
+        "$DNSMASQ_BIN" reload >/dev/null 2>&1 || return 1
+    fi
+}
+
+setup_cron() {
+    case "$UPDATE_BIN" in
+        /*) ;;
+        *) return 1 ;;
+    esac
+    CRON_LINE="17 */12 * * * $UPDATE_BIN # steamhostsync managed task"
+    cron_dir=$(dirname "$CRONTAB")
+    mkdir -p "$cron_dir" || return 1
+    temp="$CRONTAB.steamhostsync.$$"
+    if [ -f "$CRONTAB" ]; then
+        grep -v -F -x "$CRON_LINE" "$CRONTAB" >"$temp" || true
+    else
+        : >"$temp"
+    fi
+    printf '%s\n' "$CRON_LINE" >>"$temp"
+    if [ -f "$CRONTAB" ] && cmp -s "$temp" "$CRONTAB"; then
+        rm -f "$temp"
+        return 0
+    fi
+    mv "$temp" "$CRONTAB" || return 1
+    CRON_CHANGED=1
+}
+
+remove_cron() {
+    [ -f "$CRONTAB" ] || return 0
+    CRON_LINE="17 */12 * * * $UPDATE_BIN # steamhostsync managed task"
+    temp="$CRONTAB.steamhostsync.$$"
+    grep -v -F -x "$CRON_LINE" "$CRONTAB" >"$temp" || true
+    if cmp -s "$temp" "$CRONTAB"; then
+        rm -f "$temp"
+        return 0
+    fi
+    mv "$temp" "$CRONTAB" || return 1
+    CRON_CHANGED=1
+}
+
+capture_original_state() {
+    ORIGINAL_ENABLED=$(uci_get enabled)
+    case "$ORIGINAL_ENABLED" in
+        1) ;;
+        *) ORIGINAL_ENABLED=0 ;;
+    esac
+    ORIGINAL_INIT_ENABLED=0
+    for init_entry in "$INIT_RC_DIR"/S??steamhostsync; do
+        [ -e "$init_entry" ] || continue
+        ORIGINAL_INIT_ENABLED=1
+        break
+    done
+}
+
+rollback_setup() {
+    if [ "$CRON_CHANGED" = "1" ]; then
+        remove_cron || true
+    fi
+    if [ "$DNSMASQ_CHANGED" = "1" ]; then
+        remove_dnsmasq_entry || true
+    fi
+    "$UCI_BIN" set "steamhostsync.main.enabled=$ORIGINAL_ENABLED" >/dev/null 2>&1 || true
+    "$UCI_BIN" commit steamhostsync >/dev/null 2>&1 || true
+    if [ "$ORIGINAL_INIT_ENABLED" = "1" ]; then
+        "$INIT_BIN" enable >/dev/null 2>&1 || true
+    else
+        "$INIT_BIN" disable >/dev/null 2>&1 || true
+    fi
+}
+
+setup() {
+    capture_original_state
+    setup_dnsmasq || return 1
+    if ! setup_cron; then
+        rollback_setup
+        return 1
+    fi
+    if ! "$UCI_BIN" set steamhostsync.main.enabled=1 || ! "$UCI_BIN" commit steamhostsync; then
+        rollback_setup
+        return 1
+    fi
+    if ! "$INIT_BIN" enable >/dev/null 2>&1; then
+        rollback_setup
+        return 1
+    fi
+    if [ "$CRON_CHANGED" = "1" ]; then
+        if ! "$CRON_BIN" enable >/dev/null 2>&1 || ! "$CRON_BIN" restart >/dev/null 2>&1; then
+            rollback_setup
+            return 1
+        fi
+    fi
+}
+
+restore_cron_backup() {
+    if [ -f "$CRON_BACKUP" ]; then
+        mv "$CRON_BACKUP" "$CRONTAB" || return 1
+    else
+        rm -f "$CRONTAB"
+    fi
+    "$CRON_BIN" restart >/dev/null 2>&1 || true
+}
+
+restore_dnsmasq_entry() {
+    [ "$DNSMASQ_WAS_CONFIGURED" = "1" ] || return 0
+    "$UCI_BIN" add_list "$DNSMASQ_SECTION.addnhosts=$CURRENT_FILE" || return 1
+    "$UCI_BIN" commit dhcp || return 1
+    "$DNSMASQ_BIN" reload >/dev/null 2>&1
+}
+
+disable() {
+    capture_original_state
+    CRON_BACKUP="$CRONTAB.steamhostsync.backup.$$"
+    if [ -f "$CRONTAB" ]; then
+        cp "$CRONTAB" "$CRON_BACKUP" || return 1
+    fi
+    has_addnhosts && DNSMASQ_WAS_CONFIGURED=1 || DNSMASQ_WAS_CONFIGURED=0
+
+    if ! remove_dnsmasq_entry; then
+        rm -f "$CRON_BACKUP"
+        return 1
+    fi
+    if ! remove_cron; then
+        restore_dnsmasq_entry || true
+        restore_cron_backup || true
+        return 1
+    fi
+    if ! "$UCI_BIN" set steamhostsync.main.enabled=0 || ! "$UCI_BIN" commit steamhostsync; then
+        restore_dnsmasq_entry || true
+        restore_cron_backup || true
+        return 1
+    fi
+    "$INIT_BIN" disable >/dev/null 2>&1 || true
+    if [ "$CRON_CHANGED" = "1" ] && ! "$CRON_BIN" restart >/dev/null 2>&1; then
+        restore_dnsmasq_entry || true
+        restore_cron_backup || true
+        "$UCI_BIN" set "steamhostsync.main.enabled=$ORIGINAL_ENABLED" >/dev/null 2>&1 || true
+        "$UCI_BIN" commit steamhostsync >/dev/null 2>&1 || true
+        return 1
+    fi
+    rm -f "$CRON_BACKUP"
+}
+
+status() {
+    source=$(uci_get source)
+    [ -n "$source" ] || source=remote
+    printf 'source: %s\n' "$source"
+    printf 'state: %s\n' "$CURRENT_FILE"
+    if [ -s "$CURRENT_FILE" ]; then
+        printf 'state: ready\n'
+    else
+        printf 'state: empty\n'
+    fi
+    if has_addnhosts; then
+        printf 'dnsmasq: configured\n'
+    else
+        printf 'dnsmasq: not configured\n'
+    fi
+}
+
+mode() {
+    case "${2:-}" in
+        remote|local)
+            "$UCI_BIN" set "steamhostsync.main.source=$2" || return 1
+            "$UCI_BIN" commit steamhostsync || return 1
+            ;;
+        *)
+            printf 'usage: %s mode remote|local\n' "$0" >&2
+            return 2
+            ;;
+    esac
+}
+
+run_mutating() {
+    acquire_control_lock || return $?
+    trap release_control_lock 0 INT TERM
+    case "$1" in
+        setup|enable) setup ;;
+        mode) mode "$@" ;;
+        disable) disable ;;
+        *) return 2 ;;
+    esac
+}
+
+case "${1:-}" in
+    update) exec "$UPDATE_BIN" ;;
+    rollback) exec "$UPDATE_BIN" rollback ;;
+    status) status ;;
+    setup|enable|disable|mode) run_mutating "$@" ;;
+    *)
+        printf 'usage: %s {setup|update|rollback|status|mode|enable|disable}\n' "$0" >&2
+        exit 2
+        ;;
+esac

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+count=0
+[ -f "$MOCK_DNSMASQ_COUNT" ] && count=$(cat "$MOCK_DNSMASQ_COUNT")
+count=$((count + 1))
+printf '%s\n' "$count" >"$MOCK_DNSMASQ_COUNT"
+
+if [ -n "${MOCK_DNSMASQ_FAIL_ONCE:-}" ] && [ -f "$MOCK_DNSMASQ_FAIL_ONCE" ]; then
+    rm -f "$MOCK_DNSMASQ_FAIL_ONCE"
+    exit 1
+fi
+
+exit "${MOCK_DNSMASQ_EXIT:-0}"

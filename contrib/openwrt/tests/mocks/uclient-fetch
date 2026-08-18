@@ -1,0 +1,33 @@
+#!/bin/sh
+
+[ "${MOCK_FETCH_FAIL:-0}" = "1" ] && exit 1
+
+output=
+url=
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -O)
+            shift
+            output=${1:-}
+            ;;
+        -T)
+            shift
+            ;;
+        -q) ;;
+        *) url=$1 ;;
+    esac
+    shift
+done
+
+[ -n "$output" ] || exit 2
+fixture=${MOCK_FETCH_FILE:-}
+case "$url" in
+    *primary*) fixture=${MOCK_FETCH_PRIMARY_FILE:-$fixture} ;;
+    *fallback*) fixture=${MOCK_FETCH_FALLBACK_FILE:-$fixture} ;;
+esac
+[ -n "$fixture" ] || exit 3
+if [ "$output" = "-" ]; then
+    cat "$fixture"
+else
+    cp "$fixture" "$output"
+fi

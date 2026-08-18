@@ -1,0 +1,27 @@
+version: 1
+concurrency: 1
+timeout:
+  resolve: 3s
+  probe: 1s
+probe:
+  port: 443
+  attempts: 1
+dns_servers:
+  - https://dns.alidns.com/resolve
+  - https://doh.pub/dns-query
+platforms:
+  - name: github
+    domains:
+      - github.com
+      - api.github.com
+      - raw.githubusercontent.com
+  - name: steam
+    domains:
+      - steamcommunity.com
+      - store.steampowered.com
+      - api.steampowered.com
+  - name: steam_linux
+    domains:
+      - repo.steampowered.com
+      - media.steampowered.com
+      - client-update.akamai.steamstatic.com
