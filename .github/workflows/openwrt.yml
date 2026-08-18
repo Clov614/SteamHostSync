@@ -24,10 +24,10 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y busybox shellcheck
       - name: Check POSIX shell scripts
         run: |
-          shellcheck -s sh contrib/openwrt/files/usr/libexec/steamhostsync-update
-          shellcheck -s sh contrib/openwrt/files/usr/sbin/steamhostsyncctl
-          shellcheck -s sh contrib/openwrt/files/etc/init.d/steamhostsync
-          shellcheck -s sh contrib/openwrt/tests/run.sh contrib/openwrt/tests/test_*.sh
+          shellcheck -x -s sh contrib/openwrt/files/usr/libexec/steamhostsync-update
+          shellcheck -x -s sh contrib/openwrt/files/usr/sbin/steamhostsyncctl
+          shellcheck -x -s sh contrib/openwrt/files/etc/init.d/steamhostsync
+          shellcheck -x -s sh contrib/openwrt/tests/run.sh contrib/openwrt/tests/test_*.sh
       - name: Run OpenWrt tests with BusyBox ash
         run: busybox ash contrib/openwrt/tests/run.sh
       - name: Vet

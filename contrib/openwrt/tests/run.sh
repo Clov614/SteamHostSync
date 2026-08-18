@@ -1,7 +1,7 @@
 #!/bin/sh
 set -u
 
-TEST_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+TEST_DIR=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
 failed=0
 
 for test_file in "$TEST_DIR"/test_*.sh; do
