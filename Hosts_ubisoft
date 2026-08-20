@@ -1,9 +1,9 @@
 # SteamHostSync hosts v1
-# Generated: 2026-08-20T01:19:49Z
+# Generated: 2026-08-20T12:52:53Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # ubisoft Start
-23.203.225.16			static3.cdn.Ubi.com
-104.68.102.182			static2.cdn.Ubi.com
+23.40.25.65			static3.cdn.Ubi.com
+23.40.25.207			static2.cdn.Ubi.com
 # static1.cdn.Ubi.com
-# ubisoft End # Last Update Time : 2026-08-20T01:19:49Z
+# ubisoft End # Last Update Time : 2026-08-20T12:52:53Z
