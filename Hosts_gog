@@ -1,14 +1,14 @@
 # SteamHostSync hosts v1
-# Generated: 2026-09-03T15:59:55Z
+# Generated: 2026-09-04T03:29:54Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # gog Start
-151.101.193.241			auth.gog.com
-151.101.193.241			www.gogalaxy.com
-151.101.193.241			remote-config.gog.com
-151.101.193.241			insights-collector.gog.com
-151.101.193.241			gameplay.gog.com
-151.101.129.241			gamesdb.gog.com
-151.101.129.241			external-accounts.gog.com
-151.101.193.241			www.gog.com
-# gog End # Last Update Time : 2026-09-03T15:59:55Z
+167.82.49.241			auth.gog.com
+167.82.49.241			www.gogalaxy.com
+167.82.49.241			remote-config.gog.com
+167.82.49.241			insights-collector.gog.com
+167.82.49.241			gameplay.gog.com
+167.82.49.241			gamesdb.gog.com
+167.82.49.241			external-accounts.gog.com
+167.82.49.241			www.gog.com
+# gog End # Last Update Time : 2026-09-04T03:29:54Z
