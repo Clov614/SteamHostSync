@@ -1,12 +1,12 @@
 # SteamHostSync hosts v1
-# Generated: 2026-09-27T16:36:40Z
+# Generated: 2026-09-28T04:19:38Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # steam_linux Start
 34.126.228.17			repo.steampowered.com
-23.53.11.244			media.steampowered.com
-23.218.216.144			client-update.akamai.steamstatic.com
+23.222.27.74			media.steampowered.com
+23.220.73.211			client-update.akamai.steamstatic.com
 199.232.215.82			client-update.fastly.steamstatic.com
-2.18.67.90			cdn.cloudflare.steamstatic.com
+23.222.27.33			cdn.cloudflare.steamstatic.com
 199.232.215.52			cdn.steamstatic.com
-# steam_linux End # Last Update Time : 2026-09-27T16:36:40Z
+# steam_linux End # Last Update Time : 2026-09-28T04:19:38Z
