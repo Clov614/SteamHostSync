@@ -99,6 +99,9 @@ func TestFilterUnusable(t *testing.T) {
 		"172.16.0.1",  // private
 		"192.168.1.1", // private
 		"169.254.0.1", // link-local
+		"224.0.0.1",   // multicast
+		"255.255.255.255", // broadcast
+		"ff02::1",     // IPv6 multicast
 		"not-an-ip",   // invalid
 		"8.8.8.8",
 	}
