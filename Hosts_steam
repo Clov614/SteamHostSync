@@ -1,16 +1,16 @@
 # SteamHostSync hosts v1
-# Generated: 2026-10-16T03:39:14Z
+# Generated: 2026-10-16T16:16:30Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # steam Start
-184.29.30.218			steamcommunity.com
-184.29.30.218			www.steamcommunity.com
-184.29.36.172			store.steampowered.com
-23.223.240.75			api.steampowered.com
-23.204.167.126			help.steampowered.com
-23.36.217.159			store.akamai.steamstatic.com
-23.220.161.26			steamcdn-a.akamaihd.net
-23.36.217.178			cdn.akamai.steamstatic.com
-184.29.30.218			steam-chat.com
-23.36.217.177			community.akamai.steamstatic.com
-# steam End # Last Update Time : 2026-10-16T03:39:14Z
+23.199.0.243			steamcommunity.com
+23.199.0.243			www.steamcommunity.com
+23.199.2.119			store.steampowered.com
+23.209.84.168			api.steampowered.com
+2.19.157.166			help.steampowered.com
+23.222.3.171			store.akamai.steamstatic.com
+23.222.3.169			steamcdn-a.akamaihd.net
+23.209.84.49			cdn.akamai.steamstatic.com
+23.199.0.243			steam-chat.com
+23.222.3.171			community.akamai.steamstatic.com
+# steam End # Last Update Time : 2026-10-16T16:16:30Z
