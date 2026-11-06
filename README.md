@@ -30,110 +30,110 @@ Forked this repo to make your own hosts source? See the fork customization guide
 
 ```
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # github Start
-140.82.113.25			alive.github.com
+140.82.114.26			alive.github.com
 140.82.113.25			live.github.com
 185.199.110.215			github.githubassets.com
-140.82.113.22			central.github.com
-185.199.111.133			desktop.githubusercontent.com
+140.82.114.22			central.github.com
+185.199.108.133			desktop.githubusercontent.com
 # assets-cdn.github.com
 185.199.108.133			camo.githubusercontent.com
-185.199.108.133			github.map.fastly.net
+185.199.111.133			github.map.fastly.net
 151.101.193.194			github.global.ssl.fastly.net
 172.182.252.133			gist.github.com
-185.199.110.153			github.io
+185.199.111.153			github.io
 172.182.252.133			github.com
 192.0.66.2			github.blog
 172.182.252.137			api.github.com
-185.199.110.133			raw.githubusercontent.com
-185.199.110.133			user-images.githubusercontent.com
-185.199.109.133			favicons.githubusercontent.com
-185.199.110.133			avatars5.githubusercontent.com
-185.199.111.133			avatars4.githubusercontent.com
-185.199.109.133			avatars3.githubusercontent.com
-185.199.108.133			avatars2.githubusercontent.com
-185.199.109.133			avatars1.githubusercontent.com
+185.199.108.133			raw.githubusercontent.com
+185.199.111.133			user-images.githubusercontent.com
+185.199.108.133			favicons.githubusercontent.com
+185.199.109.133			avatars5.githubusercontent.com
+185.199.108.133			avatars4.githubusercontent.com
+185.199.111.133			avatars3.githubusercontent.com
+185.199.109.133			avatars2.githubusercontent.com
+185.199.110.133			avatars1.githubusercontent.com
 185.199.111.133			avatars0.githubusercontent.com
-185.199.108.133			avatars.githubusercontent.com
+185.199.111.133			avatars.githubusercontent.com
 172.182.252.132			codeload.github.com
-16.15.163.178			github-cloud.s3.amazonaws.com
-52.217.173.234			github-com.s3.amazonaws.com
-16.15.247.112			github-production-release-asset-2e65be.s3.amazonaws.com
-16.15.247.168			github-production-user-asset-6210df.s3.amazonaws.com
-16.15.159.20			github-production-repository-file-5c1aeb.s3.amazonaws.com
-185.199.111.153			githubstatus.com
-140.82.112.18			github.community
+16.182.73.66			github-cloud.s3.amazonaws.com
+16.182.41.186			github-com.s3.amazonaws.com
+16.15.213.238			github-production-release-asset-2e65be.s3.amazonaws.com
+54.231.232.50			github-production-user-asset-6210df.s3.amazonaws.com
+52.217.76.192			github-production-repository-file-5c1aeb.s3.amazonaws.com
+185.199.109.153			githubstatus.com
+140.82.113.18			github.community
 20.99.227.183			github.dev
-185.199.108.133			media.githubusercontent.com
-# github End # Last Update Time : 2026-11-05T19:39:31Z
+185.199.109.133			media.githubusercontent.com
+# github End # Last Update Time : 2026-11-06T05:39:00Z
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # steam Start
-23.36.21.12			steamcommunity.com
-23.36.21.12			www.steamcommunity.com
-23.36.22.171			store.steampowered.com
-23.62.46.144			api.steampowered.com
+23.45.136.230			steamcommunity.com
+23.37.16.240			www.steamcommunity.com
+23.37.18.120			store.steampowered.com
+23.212.62.214			api.steampowered.com
 96.6.230.158			help.steampowered.com
-23.192.228.6			store.akamai.steamstatic.com
-23.62.46.198			steamcdn-a.akamaihd.net
-23.46.216.85			cdn.akamai.steamstatic.com
-23.37.16.240			steam-chat.com
-23.46.216.76			community.akamai.steamstatic.com
-# steam End # Last Update Time : 2026-11-05T19:39:31Z
+23.67.33.72			store.akamai.steamstatic.com
+23.213.175.41			steamcdn-a.akamaihd.net
+23.67.33.105			cdn.akamai.steamstatic.com
+23.45.136.230			steam-chat.com
+23.67.33.74			community.akamai.steamstatic.com
+# steam End # Last Update Time : 2026-11-06T05:39:00Z
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # steam_linux Start
 34.126.228.17			repo.steampowered.com
-23.192.228.17			media.steampowered.com
-23.192.228.151			client-update.akamai.steamstatic.com
+23.46.216.146			media.steampowered.com
+23.46.216.87			client-update.akamai.steamstatic.com
 199.232.215.82			client-update.fastly.steamstatic.com
-23.62.46.200			cdn.cloudflare.steamstatic.com
-199.232.215.52			cdn.steamstatic.com
-# steam_linux End # Last Update Time : 2026-11-05T19:39:31Z
+23.46.216.72			cdn.cloudflare.steamstatic.com
+199.232.211.52			cdn.steamstatic.com
+# steam_linux End # Last Update Time : 2026-11-06T05:39:00Z
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # docker Start
 23.185.0.4			docker.com
 104.18.43.187			hub.docker.com
-65.8.54.82			docs.docker.com
+65.8.54.115			docs.docker.com
 104.18.41.121			login.docker.com
-35.174.151.32			registry.hub.docker.com
+23.21.115.105			registry.hub.docker.com
 54.163.166.73			docker.io
-100.49.148.156			registry-1.docker.io
-35.174.151.32			index.docker.io
-# docker End # Last Update Time : 2026-11-05T19:39:31Z
+100.58.144.241			registry-1.docker.io
+23.21.101.40			index.docker.io
+# docker End # Last Update Time : 2026-11-06T05:39:00Z
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # gog Start
 151.101.65.241			auth.gog.com
-151.101.65.241			www.gogalaxy.com
-151.101.1.241			remote-config.gog.com
+151.101.1.241			www.gogalaxy.com
+151.101.193.241			remote-config.gog.com
 151.101.1.241			insights-collector.gog.com
 151.101.193.241			gameplay.gog.com
-151.101.193.241			gamesdb.gog.com
+151.101.65.241			gamesdb.gog.com
 151.101.129.241			external-accounts.gog.com
-151.101.129.241			www.gog.com
-# gog End # Last Update Time : 2026-11-05T19:39:31Z
+151.101.193.241			www.gog.com
+# gog End # Last Update Time : 2026-11-06T05:39:00Z
 # SteamHostSync hosts v1
-# Generated: 2026-11-05T19:39:31Z
+# Generated: 2026-11-06T05:39:00Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # ubisoft Start
 184.28.149.32			static3.cdn.Ubi.com
-184.28.149.152			static2.cdn.Ubi.com
+23.37.17.207			static2.cdn.Ubi.com
 # static1.cdn.Ubi.com
-# ubisoft End # Last Update Time : 2026-11-05T19:39:31Z
+# ubisoft End # Last Update Time : 2026-11-06T05:39:00Z
 # Github: https://github.com/Clov614/SteamHostSync
 
 ```
