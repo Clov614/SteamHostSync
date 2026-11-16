@@ -1,14 +1,14 @@
 # SteamHostSync hosts v1
-# Generated: 2026-11-15T18:36:17Z
+# Generated: 2026-11-16T05:24:29Z
 # Project: https://github.com/Clov614/SteamHostSync
 
 # docker Start
 23.185.0.4			docker.com
 104.18.43.187			hub.docker.com
-65.8.54.82			docs.docker.com
-104.18.41.121			login.docker.com
-100.50.49.211			registry.hub.docker.com
-34.206.146.183			docker.io
-100.50.49.211			registry-1.docker.io
-44.197.32.100			index.docker.io
-# docker End # Last Update Time : 2026-11-15T18:36:17Z
+18.160.10.27			docs.docker.com
+172.64.146.135			login.docker.com
+52.70.72.13			registry.hub.docker.com
+35.153.233.226			docker.io
+52.205.201.28			registry-1.docker.io
+34.198.104.101			index.docker.io
+# docker End # Last Update Time : 2026-11-16T05:24:29Z
